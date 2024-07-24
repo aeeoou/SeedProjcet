@@ -23,7 +23,7 @@ import lombok.ToString;
 public class User {
 	@Id //기본키(PK-key 설정)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long userNo; todoRepository.findById(userNo);
+	private Long userNo;
 	private String userId;
 	private String userPw;
 	private String userName;
