@@ -1,9 +1,7 @@
 package com.my.restaurant.service;
 
-import java.util.List;
-
-import com.my.restaurant.domain.dto.UserDto;
+import com.my.restaurant.domain.dto.UserLoginDto;
 
 public interface UserService {
-	UserDto getUser(Long userNo);
+	UserLoginDto findByUserId(String userId);
 }

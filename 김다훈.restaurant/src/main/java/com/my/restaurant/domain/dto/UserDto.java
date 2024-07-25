@@ -1,5 +1,6 @@
 package com.my.restaurant.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+	private Long userNo;
 	private String userId;
 	private String userPw;
+	private String userName;
+	private String phoneNumber;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+	private String joinDate;
+	private String email;
 }

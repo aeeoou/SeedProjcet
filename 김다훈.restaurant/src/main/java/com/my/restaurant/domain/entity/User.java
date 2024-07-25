@@ -1,17 +1,9 @@
 package com.my.restaurant.domain.entity;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="users")
@@ -22,7 +14,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class User {
 	@Id //기본키(PK-key 설정)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "userSequence")
+	@SequenceGenerator(name = "userSequence", sequenceName = "user_seq", allocationSize = 1)
 	private Long userNo;
 	private String userId;
 	private String userPw;
