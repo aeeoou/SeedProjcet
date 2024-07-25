@@ -4,17 +4,14 @@ import UserLayout from '../UserLayout';
 import MyBackButton from "../navigation/02";
 import UserCheckModal from './UserCheckModal';
 
-
-
-
 const UserSignUp = () => {
-    const btnName = ''
-    const btnWidth = 0
-    const btnTitle = ''
-    const modalBody= ''
-    const completeBtn =''
+    const [user, setUser] = userState({
+
+    })
 
     const [idValue, setId] = useState('');
+
+
 
     const saveUserId = event => {
         setId(event.target.value);
@@ -34,7 +31,7 @@ const UserSignUp = () => {
                     <UserCheckModal btnName={'중복확인'} btnWidth={'w-100'} modalBody={'사용가능한 아이디입니다.'} />
                 </Col>
             </Row>
-            
+
             <Row className='mt-3'>
                 <Col className='d-flex align-items-center justify-content-center' xs={3}>
                     <div>*비밀번호</div>
@@ -123,7 +120,7 @@ const UserSignUp = () => {
                 </Col>
             </Row>
         </UserLayout>
-        )
+    )
 }
 
 export default UserSignUp
