@@ -47,7 +47,8 @@ const UserLogin = () => {
                         <Form.Label>ID</Form.Label>
                         <Form.Control name='id' type="text" placeholder="아이디를 입력하세요." className='h-25'
                                       onChange={(e) =>
-                                      {   userLogin[e.target.name] = e.target.value
+                                      {
+                                          userLogin[e.target.name] = e.target.value
                                           setUserLogin({...userLogin})
                                       }
                                       }/>
@@ -93,11 +94,11 @@ const UserLogin = () => {
                 <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn' href='/userSignUp'>회원가입</Button>{' '}
                 <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn' href='/adminMain'
                         onClick={ () => {
-                            sessionStorage.setItem("loginId", loginId);
-                            sessionStorage.setItem("loginPassword", loginPassword);
-
-                            setSavedLoginId(sessionStorage.getItem("loginId"));
-                            setSavedLoginPassword(sessionStorage.getItem("loginPassword"));
+                            // sessionStorage.setItem("loginId", loginId);
+                            // sessionStorage.setItem("loginPassword", loginPassword);
+                            //
+                            // setSavedLoginId(sessionStorage.getItem("loginId"));
+                            // setSavedLoginPassword(sessionStorage.getItem("loginPassword"));
                         }}>관리자로그인</Button>{' '}
             </Row>
         </Container>

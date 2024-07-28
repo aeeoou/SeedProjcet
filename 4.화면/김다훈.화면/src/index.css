@@ -103,6 +103,14 @@
     height: 4rem;
 }
 
+.success {
+    color: orange;
+}
+
+.error {
+    color: red;
+}
+
 /* user.06 비밀번호 재설정 */
 #pWUpdate {
     width: 22rem;

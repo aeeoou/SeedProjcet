@@ -21,30 +21,7 @@ public class User {
 	private String userPw;
 	private String userName;
 	private String phoneNumber;
-	private LocalDate joinDate;
+	private LocalDate birthDay;
 	private String email;
-	
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
-	}
-	
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	
-	public void setJoinDate(LocalDate joinDate) {
-		this.joinDate = joinDate;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 }

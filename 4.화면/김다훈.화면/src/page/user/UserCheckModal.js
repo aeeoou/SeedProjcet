@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import {Row, Col, Button, Modal} from 'react-bootstrap'
 
-function UserCheckModal({ btnName, btnWidth, modalBody, completeBtn}) {
+function UserCheckModal({ btnName, btnWidth, modalBody, completeBtn, onClickUserAdd, btnType, condition}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const clickSignUpButton = () => {
+      handleShow();
+      onClickUserAdd();
+  }
   return (
     <>
-        <Button variant="warning" onClick={handleShow} className={btnWidth}>
+        <Button variant="warning" onClick={clickSignUpButton} className={btnWidth} type={btnType} disabled={condition}>
                     {btnName}
         </Button>
 
