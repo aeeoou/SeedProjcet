@@ -33,6 +33,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.modelmapper:modelmapper:3.1.1'
+	implementation 'net.nurigo:sdk:4.3.0'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	// dto와 entity의 다리역할을 해주는 modelmapper dependency
 	// Gradle groovy와 kootlen의 차이는 dependencies의 문법차이이다.
 }
