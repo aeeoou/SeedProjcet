@@ -13,7 +13,7 @@ function UserCheckModal({ btnName, btnWidth, modalBody, completeBtn, onClickUser
   }
   return (
     <>
-        <Button variant="warning" onClick={clickSignUpButton} className={btnWidth} type={btnType} disabled={condition}>
+        <Button variant="warning" onClick={clickSignUpButton} className={btnWidth} disabled={condition}>
                     {btnName}
         </Button>
 

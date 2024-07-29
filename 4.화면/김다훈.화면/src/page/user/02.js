@@ -1,13 +1,13 @@
-import {Row, Col, Form, Button} from 'react-bootstrap'
-import { useState , useCallback, useEffect} from 'react';
+import {Button, Col, Form, Row} from 'react-bootstrap'
+import {useCallback, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import UserLayout from '../UserLayout';
 import MyBackButton from "../navigation/02";
-import UserCheckModal from './UserCheckModal';
-import {userSignUp, sendSMS, checkUserIdAvailability} from "../../api/userApi";
+import UserCheckModal from "./UserCheckModal";
+import {sendSMS, userSignUp, checkUserIdAvailability} from "../../api/userApi";
 
 const UserSignUp = () => {
-    const [users, setUsers] = useState({
+    const [user, setUser] = useState({
         userId:'',
         userPw:'',
         userPwCheck:'',
@@ -20,15 +20,15 @@ const UserSignUp = () => {
 
     const [data, setData] = useState(null)
     // 적은 휴대폰번호를 담아서 백엔드에 보내주는 함수
-    const onClickSendPhoneNumber = useCallback(() => sendSMS(users.phoneNumber).then(data => {
+    const onClickSendPhoneNumber = useCallback(() => sendSMS(user.phoneNumber).then(data => {
         const cerNum = data;
         alert('cerNum:' + cerNum)
         setData(cerNum)
-    }), [users.phoneNumber]);
+    }), [user.phoneNumber]);
 
     const checkSMS = () => {
-        if (data === users.checkSMS) {
-            console.log(users.checkSMS)
+        if (data === user.checkSMS) {
+            console.log(user.checkSMS)
             console.log(data)
             alert("휴대폰 인증이 정상적으로 완료되었습니다.")
         } else {
@@ -68,14 +68,14 @@ const UserSignUp = () => {
     const navigate = useNavigate()
 
     const onChange = e => {
-        users[e.target.name] = e.target.value
-        setUsers({...users})
+        user[e.target.name] = e.target.value
+        setUser({...user})
     }
 
     // user가 바뀔때마다 useCallback을 다시사용하여 렌더링을 다시하겠다.
     const onClickUserAdd = useCallback(() => {
         try {
-            userSignUp(users)
+            userSignUp(user)
                 .then((data) => {
                     console.log('response:', data)
                     if(data.status === 200) {
@@ -86,7 +86,7 @@ const UserSignUp = () => {
             console.error(err)
         }
         },
-        [users, navigate]
+        [user, navigate]
     )
 
     // 아이디
@@ -177,12 +177,12 @@ const UserSignUp = () => {
     }, [])
 
     const onChangeBirthDay = useCallback(e => {
-        const birthDayRegex = /^[0-9]{8}$/ // 11자리의 숫자
+        const birthDayRegex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ // 11자리의 숫자
         const birthDayCurrent = e.target.value
         setBirthDay(birthDayCurrent)
 
         if(!birthDayRegex.test(birthDayCurrent)) {
-            setBirthDayMessage('YYYYMMDD 형식으로 8자 입력해주세요.')
+            setBirthDayMessage('YYYY-MM-DD 형식으로 8자 입력해주세요.')
             setIsBirthDay(false)
         } else {
             setBirthDayMessage('올바른 형식의 생년월일입니다. :)')
@@ -207,7 +207,7 @@ const UserSignUp = () => {
             .catch(error => {
                 console.error('Error while checking userId:', error)
             });
-        }, [userId]);
+    }, [userId]);
 
 
 
@@ -221,7 +221,7 @@ const UserSignUp = () => {
                             <div>*아이디</div>
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
-                            <Form.Control type="text" placeholder="아이디를 입력하세요." name={'userId'} value={users.userId}
+                            <Form.Control type="text" placeholder="아이디를 입력하세요." name={'userId'} value={user.userId}
                                           onChange={(event) => {
                                               onChangeId(event);
                                               onChange(event)
@@ -235,7 +235,7 @@ const UserSignUp = () => {
                             }}>중복확인</Button>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.userId.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.userId.length > 0 &&
                         <span className={`message ${isId ? 'success' : 'error'}`}>{idMessage}</span>}</Row>
 
                     {/* 비밀번호 */}
@@ -245,7 +245,7 @@ const UserSignUp = () => {
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
                             <Form.Control type="password" placeholder="비밀번호를 입력하세요." className='w-100' name={'userPw'}
-                                          value={users.userPw}
+                                          value={user.userPw}
                                           onChange={event => {
                                               onChangePassword(event);
                                               onChange(event)
@@ -254,7 +254,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.userPw.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.userPw.length > 0 &&
                         <span className={`message ${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>}</Row>
 
                     {/* 비밀번호 확인 */}
@@ -265,7 +265,7 @@ const UserSignUp = () => {
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
                             <Form.Control type="password" placeholder="비밀번호를 입력하세요." className='w-100'
                                           name={'userPwCheck'}
-                                          value={users.userPwCheck}
+                                          value={user.userPwCheck}
                                           onChange={event => {
                                               onChangePasswordConfirm(event);
                                               onChange(event)
@@ -274,7 +274,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.userPwCheck.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.userPwCheck.length > 0 &&
                         <span
                             className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>}</Row>
 
@@ -285,7 +285,7 @@ const UserSignUp = () => {
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
                             <Form.Control type="text" placeholder="이메일을 입력하세요." className='w-100' name={'email'}
-                                          value={users.email}
+                                          value={user.email}
                                           onChange={event => {
                                               onChangeEmail(event);
                                               onChange(event)
@@ -294,7 +294,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.email.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.email.length > 0 &&
                         <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}</Row>
 
                     <Row className='mt-3'>
@@ -303,7 +303,7 @@ const UserSignUp = () => {
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
                             <Form.Control type="text" placeholder="휴대폰번호를 입력하세요." className='w-100' name={'phoneNumber'}
-                                          value={users.phoneNumber}
+                                          value={user.phoneNumber}
                                           onChange={event => {
                                               onChangePhoneNumber(event);
                                               onChange(event)
@@ -314,7 +314,7 @@ const UserSignUp = () => {
                                 발송</Button>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.phoneNumber.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.phoneNumber.length > 0 &&
                         <span
                             className={`message ${isPhoneNumber ? 'success' : 'error'}`}>{phoneNumberMessage}</span>}</Row>
 
@@ -323,7 +323,7 @@ const UserSignUp = () => {
                             <div className='text-center'>*인증번호</div>
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
-                            <Form.Control type="text" placeholder="인증번호를 입력하세요." name='checkSMS' value={users.checkSMS}
+                            <Form.Control type="text" placeholder="인증번호를 입력하세요." name='checkSMS' value={user.checkSMS}
                                           onChange={onChange} className='w-100'/>
                         </Col>
                         <Col xs={3}>
@@ -337,7 +337,7 @@ const UserSignUp = () => {
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
                             <Form.Control type="text" placeholder="이름을 입력하세요." className='w-100' name={'userName'}
-                                          value={users.userName}
+                                          value={user.userName}
                                           onChange={event => {
                                               onChangeName(event);
                                               onChange(event)
@@ -346,7 +346,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.userName.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.userName.length > 0 &&
                         <span className={`message ${isName ? 'success' : 'error'}`}>{nameMessage}</span>}</Row>
 
 
@@ -356,7 +356,7 @@ const UserSignUp = () => {
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
                             <Form.Control type="text" placeholder="생년월일을 입력하세요." className='w-100' name={'birthDay'}
-                                          value={users.birthDay}
+                                          value={user.birthDay}
                                           onChange={event => {
                                               onChangeBirthDay(event);
                                               onChange(event)
@@ -365,7 +365,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{users.birthDay.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.birthDay.length > 0 &&
                         <span className={`message ${isBirthDay ? 'success' : 'error'}`}>{birthDayMessage}</span>}
                     </Row>
 
@@ -378,8 +378,9 @@ const UserSignUp = () => {
                         <Col className='text-center mt-3'>
                             <UserCheckModal btnName={'회원가입'} onClickUserAdd={onClickUserAdd}
                                             modalBody={'회원가입이 완료되었습니다.'}
-                                            completeBtn='/userCompleteSignUp' btnType={'submit'}
-                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay)}/>
+                                            completeBtn={'/userCompleteSignUp'}
+                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay)}
+                            />
                         </Col>
                     </Row>
                 </Form>
