@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -17,6 +18,8 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "userSequence")
 	@SequenceGenerator(name = "userSequence", sequenceName = "user_seq", allocationSize = 1)
 	private Long userNo;
+
+	@Column(unique = true, nullable = false)
 	private String userId;
 	private String userPw;
 	private String userName;
@@ -24,4 +27,9 @@ public class User {
 	private LocalDate birthDay;
 	private String email;
 
+//	@OneToMany
+//	private List<Reservation> reservation;
+//
+//	@OneToMany
+//	private List<Answer> answer;
 }

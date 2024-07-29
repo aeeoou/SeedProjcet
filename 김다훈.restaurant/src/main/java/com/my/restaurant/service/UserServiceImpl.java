@@ -13,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 @RequiredArgsConstructor //Autowired를 사용하지않고 의존성주입을 할때 사용
@@ -53,4 +55,9 @@ public class UserServiceImpl implements UserService {
 			System.out.println(exception.getMessage());
 		}
 	}
+
+	public boolean checkUserIdDuplicate(String userId) {
+		return userRepository.existsByUserId(userId);
+	}
+
 }

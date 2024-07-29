@@ -7,4 +7,5 @@ public interface UserService {
 	UserLoginDto findByUserId(String userId);
 	void addUser(UserDto userDto);
 	void certifiedPhoneNumber(String u_phone, String cerNum);
+	boolean checkUserIdDuplicate(String userId);
 }

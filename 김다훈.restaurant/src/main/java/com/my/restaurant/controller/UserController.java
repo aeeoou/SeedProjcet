@@ -2,9 +2,12 @@ package com.my.restaurant.controller;
 
 import com.my.restaurant.domain.dto.UserDto;
 import com.my.restaurant.domain.dto.UserLoginDto;
+import com.my.restaurant.repository.UserRepository;
 import com.my.restaurant.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,7 @@ import java.util.Random;
 @RequestMapping("user")
 public class UserController {
 	private final UserService userService;
+	private final UserRepository userRepository;
 
 	@GetMapping("/login")
 	public String moveToLogin() {
@@ -62,12 +66,9 @@ public class UserController {
 		return cerNum;
 	}
 
-
-
-
-
-
-	
-
-	
+	@GetMapping("/checkUserId/{userId}")
+	public ResponseEntity<Boolean> checkUserIdDuplicate(@PathVariable String userId) {
+		boolean isAvaliable = userService.checkUserIdDuplicate(userId);
+		return ResponseEntity.ok(isAvaliable);
+	}
 }

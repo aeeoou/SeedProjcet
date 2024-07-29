@@ -21,3 +21,7 @@ export const sendSMS = async (u_phone ,cerNum) => {
     })
     return response.data
 }
+
+export const checkUserIdAvailability = (userId) => {
+    return axios.get(`${prefix}/checkUserId/${userId}`)
+};
