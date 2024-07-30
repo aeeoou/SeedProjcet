@@ -23,9 +23,9 @@ const Header = () => {
                         <Col className='mt-3' xs={4}>
                             <div className="float-end d-flex align-items-center justify-content-center">
 
-                            {sessionStorage.getItem("loginId") ? (
+                            {sessionStorage.getItem("user_id") ? (
                                 <>
-                                    <div className="fw-bold me-1 ID">user님</div>
+                                    <div className="fw-bold me-1 ID">{sessionStorage.getItem("user_id")}님</div>
                                     <Dropdown>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                                             <BellFill className="fs-3 me-2"/>

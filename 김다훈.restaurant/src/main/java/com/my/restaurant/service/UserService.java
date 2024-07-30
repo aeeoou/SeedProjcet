@@ -1,11 +1,13 @@
 package com.my.restaurant.service;
 
-import com.my.restaurant.domain.dto.UserDto;
+import com.my.restaurant.domain.dto.UserFindDto;
+import com.my.restaurant.domain.dto.UserSignUpDto;
 import com.my.restaurant.domain.dto.UserLoginDto;
 
 public interface UserService {
-	UserLoginDto findByUserId(String userId);
-	void addUser(UserDto userDto);
+	UserLoginDto findBy(UserLoginDto params);
+	UserFindDto findById(UserFindDto params);
+	void addUser(UserSignUpDto userSignUpDto);
 	void certifiedPhoneNumber(String u_phone, String cerNum);
-	boolean checkUserIdDuplicate(String userId);
+	boolean isUserIdAvailable(String userId);
 }

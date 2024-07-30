@@ -17,7 +17,7 @@ public class Advice {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.body(Map.of("msg", e.getMessage()));
 	}
-	
+
 	// controller로 엉뚱한 argument가 넘어오면 처리할 handler
 	protected ResponseEntity<?> invalidArg(MethodArgumentNotValidException e) {
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)

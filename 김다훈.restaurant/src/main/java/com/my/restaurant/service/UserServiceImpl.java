@@ -1,6 +1,7 @@
 package com.my.restaurant.service;
 
-import com.my.restaurant.domain.dto.UserDto;
+import com.my.restaurant.domain.dto.UserFindDto;
+import com.my.restaurant.domain.dto.UserSignUpDto;
 import com.my.restaurant.domain.dto.UserLoginDto;
 import com.my.restaurant.domain.entity.User;
 import com.my.restaurant.repository.UserRepository;
@@ -13,8 +14,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @Transactional
 @RequiredArgsConstructor //Autowired를 사용하지않고 의존성주입을 할때 사용
@@ -23,15 +22,23 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 
 	@Override
-	public UserLoginDto findByUserId(String userId) {
-		User user = userRepository.findByUserId(userId);
+	public UserLoginDto findBy(UserLoginDto params) {
+		User user = userRepository.findByUserIdAndUserPw(params.getUserId(), params.getUserPw());
+		System.out.println(user);
 		UserLoginDto userLoginDto = modelMapper.map(user, UserLoginDto.class);
 		return userLoginDto;
 	}
 
 	@Override
-	public void addUser(UserDto userDto) {
-		User user = modelMapper.map(userDto, User.class);
+	public UserFindDto findById(UserFindDto params) {
+		User user = userRepository.findByUserNameAndUserEmail(params.getUserName(), params.getUserEmail());
+		UserFindDto userFindDto = modelMapper.map(user, UserFindDto.class);
+		return userFindDto;
+	}
+
+	@Override
+	public void addUser(UserSignUpDto userSignUpDto) {
+		User user = modelMapper.map(userSignUpDto, User.class);
 		userRepository.save(user);
 	}
 
@@ -56,8 +63,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public boolean checkUserIdDuplicate(String userId) {
+	public boolean isUserIdAvailable(String userId) {
 		return userRepository.existsByUserId(userId);
 	}
+
 
 }

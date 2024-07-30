@@ -19,7 +19,7 @@ const NavOffcanvas = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className='fw-bold mb-3'>-여기 맛있당-</div>
-                    {sessionStorage.getItem("loginId") ? (
+                    {sessionStorage.getItem("user_id") ? (
                         <Row >
                          <Col>
                              <Navbar >

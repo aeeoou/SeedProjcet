@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import UserLayout from '../UserLayout';
 import MyBackButton from "../navigation/02";
 import UserCheckModal from "./UserCheckModal";
-import {sendSMS, userSignUp, checkUserIdAvailability} from "../../api/userApi";
+import {sendSMS, userSignUp, handleCheckDuplicate} from "../../api/userApi";
 
 const UserSignUp = () => {
     const [user, setUser] = useState({
@@ -192,22 +192,26 @@ const UserSignUp = () => {
 
 
 
-    const [userId, setUserId] = useState('');
+
     const [available, setAvailable] = useState(false);
 
-    const handleUserIdChange = useCallback((e) => {
-        const {value} = e.target;
-        setUserId(value);
+    const handleUserIdChange = useCallback(() => {
 
-        checkUserIdAvailability(userId)
+        handleCheckDuplicate(user.userId)
             .then(response => {
-                console.log(response.data)
-                setAvailable(response.data);
-            })
-            .catch(error => {
-                console.error('Error while checking userId:', error)
+                console.log("이건 받은값 :", response.data)
+                if(response.data === true) {
+                    alert("중복된 아이디입니다.")
+                    setAvailable(false);
+                } else {
+                    alert("가능한 아이디입니다.")
+                    setAvailable(true);
+                }
+
+
+
             });
-    }, [userId]);
+    }, [user.userId]);
 
 
 
@@ -224,15 +228,13 @@ const UserSignUp = () => {
                             <Form.Control type="text" placeholder="아이디를 입력하세요." name={'userId'} value={user.userId}
                                           onChange={(event) => {
                                               onChangeId(event);
-                                              onChange(event)
-                                              handleUserIdChange(event)
+                                              onChange(event);
+
                                           }}/>
 
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={3}>
-                            <Button variant="warning" onClick={() => {
-                                available ? (alert('사용할 수 없는 아이디입니다.')) : (alert('사용할 수 있는 아이디입니다.'))
-                            }}>중복확인</Button>
+                            <Button variant="warning" onClick={handleUserIdChange}>중복확인</Button>
                         </Col>
                     </Row>
                     <Row className={'mt-3 ms-2'}>{user.userId.length > 0 &&
