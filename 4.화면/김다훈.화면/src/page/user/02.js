@@ -14,9 +14,14 @@ const UserSignUp = () => {
         userName:'',
         phoneNumber:'',
         birthDay:'',
-        email:'',
+        userEmail:'',
         checkSMS:''
     })
+
+    const onChange = e => {
+        user[e.target.name] = e.target.value
+        setUser({...user})
+    }
 
     const [data, setData] = useState(null)
     // 적은 휴대폰번호를 담아서 백엔드에 보내주는 함수
@@ -67,10 +72,7 @@ const UserSignUp = () => {
     const [isBirthDay, setIsBirthDay] = useState(false)
     const navigate = useNavigate()
 
-    const onChange = e => {
-        user[e.target.name] = e.target.value
-        setUser({...user})
-    }
+
 
     // user가 바뀔때마다 useCallback을 다시사용하여 렌더링을 다시하겠다.
     const onClickUserAdd = useCallback(() => {
@@ -286,8 +288,8 @@ const UserSignUp = () => {
                             <div className='text-center'>*이메일</div>
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
-                            <Form.Control type="text" placeholder="이메일을 입력하세요." className='w-100' name={'email'}
-                                          value={user.email}
+                            <Form.Control type="text" placeholder="이메일을 입력하세요." className='w-100' name={'userEmail'}
+                                          value={user.userEmail}
                                           onChange={event => {
                                               onChangeEmail(event);
                                               onChange(event)
@@ -296,7 +298,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{user.email.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.userEmail.length > 0 &&
                         <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}</Row>
 
                     <Row className='mt-3'>
@@ -312,8 +314,7 @@ const UserSignUp = () => {
                                           }}/>
                         </Col>
                         <Col xs={3}>
-                            <Button variant="warning" onClick={onClickSendPhoneNumber} disabled={!isPhoneNumber}>인증번호
-                                발송</Button>
+                            <Button variant="warning" onClick={onClickSendPhoneNumber} disabled={!isPhoneNumber}>인증번호<br/>발송</Button>
                         </Col>
                     </Row>
                     <Row className={'mt-3 ms-2'}>{user.phoneNumber.length > 0 &&

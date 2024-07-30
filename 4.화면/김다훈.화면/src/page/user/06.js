@@ -10,13 +10,13 @@ const UserPwUpdate = ({children}) => {
             <div>
                 <main>
                     {children}
-                    <form className='mt-4 d-flex flex-column align-items-center'>
-                        <div className="mb-3">
+                    <form className='mt-5 d-flex flex-column align-items-center'>
+                        <div className="mb-3 w-75">
                             <p className='fw-bold'>비밀번호</p> 
-                            <input type="password" class="form-control" id="pWUpdate" placeholder='4~12자리의 영문,숫자'></input>
+                            <input type="password" className="form-control" id="pWUpdate1" placeholder='4~12자리의 영문,숫자'></input>
                             <br/>
                             <p className='fw-bold'>비밀번호 확인</p> 
-                            <input type="password" class="form-control" id="pWUpdate" placeholder='4~12자리의 영문,숫자'></input>
+                            <input type="password" className="form-control" id="pWUpdate2" placeholder='4~12자리의 영문,숫자'></input>
                         </div>
                         <UserCheckModal btnName={'비밀번호 변경'} btnWidth={'w-75 mt-3'} completeBtn={'/userLogin'} modalBody={'비밀번호 변경이 완료되었습니다.'}/>
                     </form>

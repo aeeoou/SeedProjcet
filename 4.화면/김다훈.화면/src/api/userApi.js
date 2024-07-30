@@ -28,6 +28,11 @@ export const handleCheckDuplicate = async (userId) => {
 };
 
 export const findUserId = async findUser => {
-    const response = await axios.post(`${prefix}/findUserId`, findUser)
+    const response = await axios.post(`${prefix}/findUserId`,findUser)
+    return response.data
+}
+
+export const findUserPw = async findUser => {
+    const response = await axios.post(`${prefix}/findUserPw`,findUser)
     return response.data
 }

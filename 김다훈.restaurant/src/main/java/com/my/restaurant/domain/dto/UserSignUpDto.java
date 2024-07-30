@@ -20,5 +20,5 @@ public class UserSignUpDto {
 	private String phoneNumber;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private LocalDate birthDay;
-	private String email;
+	private String userEmail;
 }

@@ -1,8 +1,7 @@
 package com.my.restaurant.service;
 
-import com.my.restaurant.domain.dto.UserFindDto;
-import com.my.restaurant.domain.dto.UserSignUpDto;
 import com.my.restaurant.domain.dto.UserLoginDto;
+import com.my.restaurant.domain.dto.UserSignUpDto;
 import com.my.restaurant.domain.entity.User;
 import com.my.restaurant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,11 +28,27 @@ public class UserServiceImpl implements UserService {
 		return userLoginDto;
 	}
 
+
 	@Override
-	public UserFindDto findById(UserFindDto params) {
-		User user = userRepository.findByUserNameAndUserEmail(params.getUserName(), params.getUserEmail());
-		UserFindDto userFindDto = modelMapper.map(user, UserFindDto.class);
-		return userFindDto;
+	public String findBy_Id(String userName, String userEmail) {
+		String result = "";
+		try {
+			result = userRepository.find_id(userName, userEmail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public String findBy_pw(String userName, String userEmail, String phoneNumber) {
+		String result = "";
+		try {
+			result = userRepository.find_pw(userName, userEmail, phoneNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override

@@ -1,11 +1,11 @@
 package com.my.restaurant.controller;
 
-import com.my.restaurant.domain.dto.UserFindDto;
-import com.my.restaurant.domain.dto.UserSignUpDto;
+import com.my.restaurant.domain.dto.UserFindIdDto;
+import com.my.restaurant.domain.dto.UserFindPwDto;
 import com.my.restaurant.domain.dto.UserLoginDto;
+import com.my.restaurant.domain.dto.UserSignUpDto;
 import com.my.restaurant.repository.UserRepository;
 import com.my.restaurant.service.UserService;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +30,15 @@ public class UserController {
 	}
 
 	@PostMapping("/findUserId")
-	public UserFindDto userFind(@RequestBody final UserFindDto params) {
-		UserFindDto userFindDto = userService.findById(params);
-		return userFindDto;
+	public String userFindId(@RequestBody final UserFindIdDto params) {
+		String result= userService.findBy_Id(params.getUserName(), params.getUserEmail());
+		return result;
+	}
+
+	@PostMapping("/findUserPw")
+	public String userFindPw(@RequestBody final UserFindPwDto params) {
+		String result= userService.findBy_pw(params.getUserId(), params.getUserEmail(), params.getPhoneNumber());
+		return result;
 	}
 
 	

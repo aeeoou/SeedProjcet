@@ -9,33 +9,33 @@ import {useNavigate} from "react-router-dom";
 
 const UserFindId = () => {
     const [findUser, setFindUser] = useState({
-        userId: '',
         userName:'',
-        userEmail:'',
+        userEmail:''
     })
+
+    const onChange = e => {
+        findUser[e.target.name] = e.target.value
+        setFindUser({...findUser})
+    }
 
     const navigate = useNavigate()
 
     const onClickUserFindId = useCallback(() => {
         findUserId(findUser).then(response => {
-            console.log(response)
-            console.log("response.userName :", response.userName)
-            console.log("response.userEmail :", response.email)
-            if(response.userName == undefined) {
-                alert("입력하신 이름이 일치하지 않습니다.");
-            } else if(response.userEmail == null) {
-                console.log(response.userEmail);
-                alert("입력하신 이메일이 일치하지 않습니다.");
-            } else if(response.userName === findUser.userName) {
-                // id, email 모두 일치
-                alert(`아이디는 ${response.userId} 입니다.`)
+            if(response != ""){
+                setFindUser(response);
+                alert(`회원님의 아이디는 ${response} 입니다.`)
+                navigate('/userLogin');
+            } else {
+                alert("이름과 이메일이 일치하지 않습니다.")
+                window.location.reload();
             }
-            // 작업 완료 되면 페이지 이동(새로고침)
-            navigate('/userFindId');
+
         })
             .catch(error => {
-                alert("입력하신 정보가 맞지않습니다.")
-                // window.location.reload();
+                console.log(error);
+
+
             });
     }, [findUser])
 
@@ -48,10 +48,10 @@ const UserFindId = () => {
                         아이디 찾기
                     </Row>
                     <Row className="d-flex justify-content-center mt-4">
-                        <Form.Control type="text" placeholder="이름" className="w-75"/>
+                        <Form.Control type="text" name="userName" placeholder="이름" className="w-75" onChange={onChange}/>
                     </Row>
                     <Row className="d-flex justify-content-center">
-                        <Form.Control type="text" placeholder="이메일" className="w-75 mt-3"/>
+                        <Form.Control type="text" name="userEmail" placeholder="이메일" className="w-75 mt-3" onChange={onChange}/>
                     </Row>
                     <Row className="d-flex justify-content-center">
                         <Button onClick={onClickUserFindId} className={'w-75 mt-3'}>
