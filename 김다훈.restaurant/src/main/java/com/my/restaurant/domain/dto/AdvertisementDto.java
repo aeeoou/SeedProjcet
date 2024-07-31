@@ -17,7 +17,7 @@ public class AdvertisementDto {
     private String restaurantName;
     private String advertisementTitle;
     private String advertisementContent;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")        // JSON형식으로 데이터를 직렬화할 때 날짜 형식(yyyy-MM-dd)을 지정한다.
     private LocalDate createDate;
     private byte[] advertisementImage;
 }

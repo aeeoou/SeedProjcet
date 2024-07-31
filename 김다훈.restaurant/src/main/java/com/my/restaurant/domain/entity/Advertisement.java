@@ -1,7 +1,5 @@
 package com.my.restaurant.domain.entity;
-
 import java.time.LocalDate;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +22,7 @@ public class Advertisement {
     private String restaurantName;
     private String advertisementTitle;
     private String advertisementContent;
-    private LocalDate createdDate;
+    private LocalDate createDate;
     @Lob // 이미지를 저장할 필드에 @Lob 애너테이션 추가
     private byte[] advertisementImage; // 이미지 필드 추가
 
@@ -32,12 +30,12 @@ public class Advertisement {
         this.restaurantName = restaurantName;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
-    public void setJoinDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setJoinDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
     public void setAdvertisementTitle(String advertisementTitle) {

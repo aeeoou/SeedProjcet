@@ -1,10 +1,13 @@
 package com.my.restaurant.repository;
-
 import com.my.restaurant.domain.entity.Advertisement;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.my.restaurant.domain.entity.User;
+import org.springframework.data.jpa.repository.Query;
+import java.time.LocalDate;
+import java.util.List;
 
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
-
+    @Query
+    Advertisement findByAdvertisementNo(Long advertisementNo);
+    List<Advertisement> findByRestaurantNameContaining(String restaurantName);
+    List<Advertisement> findByCreateDate(LocalDate createDate);
 }

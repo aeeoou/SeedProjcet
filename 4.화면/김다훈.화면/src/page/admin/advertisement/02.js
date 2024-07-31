@@ -1,37 +1,39 @@
 import AdminLayout from '../AdminLayout';
 import { useState } from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const AdminAdvertisementCreate = () => {
-    const [file, setFile] = useState(null);
     const [restaurantName, setRestaurantName] = useState('');
+    const [advertisementTitle, setAdvertisementTitle] = useState('');
     const [advertisementContent, setAdvertisementContent] = useState('');
+    const [advertisementImage, setAdvertisementImage] = useState(null); // 파일 상태 추가
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
+    const navigate = useNavigate(); // 페이지 이동을 위해 useNavigate 훅 사용
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('restaurantName', restaurantName);
-        formData.append('advertisementContent', advertisementContent);
+        const advertisementData = {
+            restaurantName,
+            advertisementTitle,
+            advertisementContent,
+        };
 
-        try {
-            const response = await axios.post('/api/advertisement', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error('There was an error uploading the file!', error);
-        }
-    };
+    try {
+        const response = await axios.post('http://localhost:8000/advertisement/add', advertisementData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        console.log(response.data);
+        // 성공적으로 저장된 후 adminAdvertisement 페이지로 이동
+        navigate('/adminAdvertisement');
+    } catch (error) {
+        console.error('There was an error saving the advertisement!', error);
+    }
+};
 
     return (
         <>
@@ -44,25 +46,32 @@ const AdminAdvertisementCreate = () => {
                                     type="text"
                                     className="form-control"
                                     placeholder="식당명을 입력하세요."
-                                    aria-label="Recipient's username"
-                                    aria-describedby="button-addon2"
                                     value={restaurantName}
                                     onChange={(e) => setRestaurantName(e.target.value)}
                                 />
                             </div>
-                            <div>2024-07-19 00:00:00</div>
+                            <div className="mb-2">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="광고 제목을 입력하세요."
+                                    value={advertisementTitle}
+                                    onChange={(e) => setAdvertisementTitle(e.target.value)}
+                                />
+                            </div>
                         </div>
                         <hr />
                         <div className='border mb-4 p-4 d-flex align-items-center justify-content-center fs-3 fw-bold h-50' style={{ height: '150px' }}>
                             식당이미지
                         </div>
-                        <Row className="justify-content-center mb-4">
-                            <Col>
-                                <Form.Group controlId="formFile" className="mb-3">
-                                    <Form.Control type="file" className="fileUploadButton" onChange={handleFileChange} />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Control
+                                type="file"
+                                className="fileUploadButton"
+                                onChange={(e) => setAdvertisementImage(e.target.files[0])}
+                            />
+                        </Form.Group>
+                        <hr />
                         <Form.Group className="mb-3" controlId="advertisement">
                             <Form.Control
                                 as="textarea"
@@ -84,7 +93,12 @@ const AdminAdvertisementCreate = () => {
                                 등록
                             </Button>
                             <Link to='/adminAdvertisement' className='d-block'>
-                                <a className='btn btn-primary btn-outline-warning mx-1 my-5 p-2 btn-sm' style={{ background: 'orange' }}>취소</a>
+                                <Button
+                                    className='btn btn-primary btn-outline-warning mx-1 my-5 p-2 btn-sm'
+                                    style={{ background: 'orange' }}
+                                >
+                                    취소
+                                </Button>
                             </Link>
                         </div>
                     </main>
