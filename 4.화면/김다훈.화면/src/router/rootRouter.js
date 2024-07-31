@@ -81,7 +81,7 @@ const rootRouter = createBrowserRouter([
         element: <Suspense><UserFindPw/></Suspense>
     },
     {
-        path: '/userPwUpdate',
+        path: '/userPwUpdate/:userId',
         element: <Suspense><UserPwUpdate/></Suspense>
     },
     {

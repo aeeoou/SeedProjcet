@@ -1,9 +1,6 @@
 package com.my.restaurant.controller;
 
-import com.my.restaurant.domain.dto.UserFindIdDto;
-import com.my.restaurant.domain.dto.UserFindPwDto;
-import com.my.restaurant.domain.dto.UserLoginDto;
-import com.my.restaurant.domain.dto.UserSignUpDto;
+import com.my.restaurant.domain.dto.*;
 import com.my.restaurant.repository.UserRepository;
 import com.my.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +38,10 @@ public class UserController {
 		return result;
 	}
 
-	
+	@PatchMapping("/passwordFix")
+	public void passwordFix(@RequestBody UserPwFixDto UserPwFixDto) {
+		userService.passwordFix(UserPwFixDto);
+	}
 
 	@PostMapping("/add")
 	public Map<String, String> addUser(@RequestBody UserSignUpDto userSignUpDto) { //@RequestBody: 데이터를 담는 본문

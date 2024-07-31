@@ -1,6 +1,7 @@
 package com.my.restaurant.service;
 
 import com.my.restaurant.domain.dto.UserLoginDto;
+import com.my.restaurant.domain.dto.UserPwFixDto;
 import com.my.restaurant.domain.dto.UserSignUpDto;
 import com.my.restaurant.domain.entity.User;
 import com.my.restaurant.repository.UserRepository;
@@ -12,6 +13,8 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -26,6 +29,12 @@ public class UserServiceImpl implements UserService {
 		System.out.println(user);
 		UserLoginDto userLoginDto = modelMapper.map(user, UserLoginDto.class);
 		return userLoginDto;
+	}
+
+	@Override
+	public void passwordFix(UserPwFixDto userPwFixDto) {
+		userRepository.patchPw(userPwFixDto.getUserPw(), userPwFixDto.getUserId());
+
 	}
 
 
@@ -61,7 +70,7 @@ public class UserServiceImpl implements UserService {
 	public void certifiedPhoneNumber(String u_phone, String cerNum) {
 		String api_key = "NCSYYDVMXOMBSQWA";
 		String api_secret = "8S8PDZBCMFKXHEJ9DHQ0CPEN5COAVXZD";
-		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize(api_key, api_secret, "https://api.coolsms.co.kr");
+		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize(api_key, api_secret, "http://api.coolsms.co.kr");
 		Message message = new Message();
 		message.setFrom("01087817327"); // 발신번호
 		message.setTo(u_phone); // 수신번호

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="users")
-@Getter
+@Data
 @ToString
 @Builder //builder에 AllargsConstructor가 파라미터를 넘겨준다.
 @AllArgsConstructor

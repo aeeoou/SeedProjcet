@@ -13,6 +13,15 @@ export const userSignUp = async user => {
     return response.data
 }
 
+export const fixUserPw = async passwordFix => {
+    const response = await axios.patch(`${prefix}/passwordFix`, passwordFix)
+    return response.data
+}
+
+export const userUpdateAx = async userUpdate => {
+    const response = await axios.
+}
+
 export const sendSMS = async (u_phone ,cerNum) => {
     const response = await axios.post(`${prefix}/sendSMS`, cerNum, {
         params: {

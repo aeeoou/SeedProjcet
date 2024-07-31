@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import UserLayout from '../UserLayout';
 import MyBackButton from "../navigation/02";
 import UserCheckModal from "./UserCheckModal";
-import {sendSMS, userSignUp, handleCheckDuplicate} from "../../api/userApi";
+import {sendSMS, userSignUp, handleCheckDuplicate, fixUserPw} from "../../api/userApi";
 
 const UserSignUp = () => {
     const [user, setUser] = useState({
@@ -17,6 +17,7 @@ const UserSignUp = () => {
         userEmail:'',
         checkSMS:''
     })
+
 
     const onChange = e => {
         user[e.target.name] = e.target.value
@@ -214,7 +215,6 @@ const UserSignUp = () => {
 
             });
     }, [user.userId]);
-
 
 
         return (

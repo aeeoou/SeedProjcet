@@ -23,6 +23,10 @@ const UserFindPw = () => {
 
     const navigate = useNavigate()
 
+    const toPasswordFix = () => navigate({
+        pathname: `../userPwUpdate/${findUser.userId}`
+    })
+
     const onClickUserFindPw = useCallback(() => {
         findUserPw(findUser).then(response => {
             if(response === 1){
@@ -32,7 +36,6 @@ const UserFindPw = () => {
             } else {
                 alert("이름과 이메일, 휴대폰번호가 일치하지 않습니다.")
             }
-
         })
             .catch(error => {
                 console.log(error);
@@ -43,7 +46,6 @@ const UserFindPw = () => {
     // 적은 휴대폰번호를 담아서 백엔드에 보내주는 함수
     const onClickSendPhoneNumber = useCallback(() => sendSMS(findUser.phoneNumber).then(data => {
         const cerNum = data;
-        alert('cerNum:' + cerNum)
         setData(cerNum)
     }), [findUser.phoneNumber]);
 
@@ -52,7 +54,7 @@ const UserFindPw = () => {
             console.log(findUser.checkSMS)
             console.log(data)
             alert("휴대폰 인증이 정상적으로 완료되었습니다.")
-            navigate('/userPwUpdate')
+            toPasswordFix();
         } else {
             console.log(findUser.checkSMS)
             console.log(data)
