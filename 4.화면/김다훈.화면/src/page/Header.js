@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import {Row, Col, Button, Dropdown} from 'react-bootstrap'
 import {BellFill, XLg} from 'react-bootstrap-icons';
-import NavOffcanvas from './navigation/01'
+import NavCanvas from './navigation/01'
 
 const Header = () => {
 
@@ -23,9 +23,9 @@ const Header = () => {
                         <Col className='mt-3' xs={4}>
                             <div className="float-end d-flex align-items-center justify-content-center">
 
-                            {sessionStorage.getItem("user_id") ? (
+                            {sessionStorage.getItem("user_Name") ? (
                                 <>
-                                    <div className="fw-bold me-1 ID">{sessionStorage.getItem("user_id")}님</div>
+                                    <div className="fw-bold me-1 ID">{sessionStorage.getItem("user_Name")}님</div>
                                     <Dropdown>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                                             <BellFill className="fs-3 me-2"/>
@@ -43,7 +43,7 @@ const Header = () => {
                                     </Dropdown>
                                 </>
                                     ):(<Button className='me-1'id='login' href='/userLogin'>로그인</Button>)}              
-                                <NavOffcanvas/>
+                                <NavCanvas/>
                             </div>
                         </Col>
                     </Row>

@@ -1,9 +1,11 @@
 import {Link} from 'react-router-dom'
 import {Row, Col, Button, Form, InputGroup} from 'react-bootstrap'
 import UserLayout from './UserLayout';
-import {FaSearch} from 'react-icons/fa'; 
+import {FaSearch} from 'react-icons/fa';
+
 
 const Main = () => {
+
     return (
         <UserLayout>
             <Row className='mt-5'>

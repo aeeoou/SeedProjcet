@@ -18,9 +18,17 @@ export const fixUserPw = async passwordFix => {
     return response.data
 }
 
-export const userUpdateAx = async userUpdate => {
-    const response = await axios.
+export const getUser = async userName => {
+    const response = await axios.get(`${prefix}/${userName}`)
+    return response.data
 }
+
+    export const userUpdateAx = async userUpdate => {
+    const response = await axios.post(`${prefix}/userUpdate`, userUpdate)
+    return response.data
+}
+
+
 
 export const sendSMS = async (u_phone ,cerNum) => {
     const response = await axios.post(`${prefix}/sendSMS`, cerNum, {
@@ -31,13 +39,13 @@ export const sendSMS = async (u_phone ,cerNum) => {
     return response.data
 }
 
-export const handleCheckDuplicate = async (userId) => {
-    const response = await axios.get(`${prefix}/checkUserId/${userId}`)
+export const handleCheckDuplicate = async (userName) => {
+    const response = await axios.get(`${prefix}/checkUserName/${userName}`)
     return response.data
 };
 
-export const findUserId = async findUser => {
-    const response = await axios.post(`${prefix}/findUserId`,findUser)
+export const findUserName = async findUser => {
+    const response = await axios.post(`${prefix}/findUserName`,findUser)
     return response.data
 }
 

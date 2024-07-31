@@ -8,10 +8,10 @@ import {sendSMS, userSignUp, handleCheckDuplicate, fixUserPw} from "../../api/us
 
 const UserSignUp = () => {
     const [user, setUser] = useState({
-        userId:'',
+        userName:'',
         userPw:'',
         userPwCheck:'',
-        userName:'',
+        personalName:'',
         phoneNumber:'',
         birthDay:'',
         userEmail:'',
@@ -198,9 +198,9 @@ const UserSignUp = () => {
 
     const [available, setAvailable] = useState(false);
 
-    const handleUserIdChange = useCallback(() => {
+    const handleUserNameChange = useCallback(() => {
 
-        handleCheckDuplicate(user.userId)
+        handleCheckDuplicate(user.userName)
             .then(response => {
                 console.log("이건 받은값 :", response.data)
                 if(response.data === true) {
@@ -214,7 +214,7 @@ const UserSignUp = () => {
 
 
             });
-    }, [user.userId]);
+    }, [user.userName]);
 
 
         return (
@@ -227,7 +227,7 @@ const UserSignUp = () => {
                             <div>*아이디</div>
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
-                            <Form.Control type="text" placeholder="아이디를 입력하세요." name={'userId'} value={user.userId}
+                            <Form.Control type="text" placeholder="아이디를 입력하세요." name={'userName'} value={user.userName}
                                           onChange={(event) => {
                                               onChangeId(event);
                                               onChange(event);
@@ -236,10 +236,10 @@ const UserSignUp = () => {
 
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={3}>
-                            <Button variant="warning" onClick={handleUserIdChange}>중복확인</Button>
+                            <Button variant="warning" onClick={handleUserNameChange}>중복확인</Button>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{user.userId.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.userName.length > 0 &&
                         <span className={`message ${isId ? 'success' : 'error'}`}>{idMessage}</span>}</Row>
 
                     {/* 비밀번호 */}
@@ -339,8 +339,8 @@ const UserSignUp = () => {
                             <div className='text-center'>*이름</div>
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={6}>
-                            <Form.Control type="text" placeholder="이름을 입력하세요." className='w-100' name={'userName'}
-                                          value={user.userName}
+                            <Form.Control type="text" placeholder="이름을 입력하세요." className='w-100' name={'personalName'}
+                                          value={user.personalName}
                                           onChange={event => {
                                               onChangeName(event);
                                               onChange(event)
@@ -349,7 +349,7 @@ const UserSignUp = () => {
                         <Col xs={3}>
                         </Col>
                     </Row>
-                    <Row className={'mt-3 ms-2'}>{user.userName.length > 0 &&
+                    <Row className={'mt-3 ms-2'}>{user.personalName.length > 0 &&
                         <span className={`message ${isName ? 'success' : 'error'}`}>{nameMessage}</span>}</Row>
 
 

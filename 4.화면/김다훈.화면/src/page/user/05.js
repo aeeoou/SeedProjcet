@@ -8,7 +8,7 @@ import {findUserPw, sendSMS} from "../../api/userApi";
 
 const UserFindPw = () => {
     const [findUser, setFindUser] = useState({
-        userId:'',
+        userName:'',
         userEmail:'',
         phoneNumber:'',
         checkSMS:''
@@ -24,7 +24,7 @@ const UserFindPw = () => {
     const navigate = useNavigate()
 
     const toPasswordFix = () => navigate({
-        pathname: `../userPwUpdate/${findUser.userId}`
+        pathname: `../userPwUpdate/${findUser.userName}`
     })
 
     const onClickUserFindPw = useCallback(() => {
@@ -71,7 +71,7 @@ const UserFindPw = () => {
                         비밀번호 찾기
                     </Row>
                     <Row className="d-flex justify-content-center mt-4">
-                        <Form.Control type="text" placeholder="아이디" name="userId" className="w-75" onChange={onChange}/>
+                        <Form.Control type="text" placeholder="아이디" name="userName" className="w-75" onChange={onChange}/>
                     </Row>
                     <Row className="d-flex justify-content-center">
                         <Form.Control type="text" placeholder="이메일" name="userEmail" className="w-75 mt-3" onChange={onChange}/>

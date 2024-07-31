@@ -9,7 +9,7 @@ import {useParams} from 'react-router-dom';
 /* USER.06 회원 비밀번호 재설정 */
 const UserPwUpdate = ({children}) => {
     const [passwordFix, setPasswordFix] = useState({
-        userId: '',
+        userName: '',
         userPw: ''
     })
 
@@ -18,8 +18,8 @@ const UserPwUpdate = ({children}) => {
         setPasswordFix({...passwordFix})
     }
 
-    const {userId} = useParams();
-    passwordFix.userId = userId
+    const {userName} = useParams();
+    passwordFix.userName = userName
 
     const onClickSave = () => {
         fixUserPw(passwordFix).then((response) => {

@@ -5,6 +5,8 @@ import {useNavigate} from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { userLogins } from "../../api/userApi";
 import {useCookies} from "react-cookie";
+import NavOffcanvas from "../navigation/01";
+import useTo from "../useTo";
 
 
 const UserLogin = () => {
@@ -15,51 +17,55 @@ const UserLogin = () => {
 
     const [userLogin, setUserLogin] = useState({ //컴포넌트의 상태를 간편하게 생성하고 업데이트 해주는 도구를 제공해준다.
         userId: '',
+        userName: '',
         userPw: '',
     })
+
+
 
     const onChange = e => {
         userLogin[e.target.name] = e.target.value
         setUserLogin({...userLogin})
     }
 
+    const {toGet} = useTo()
+
     // useCallback : 특정 함수를 새로 만들지 않고 재사용하고 싶을때 사용한다.
     const onClickUserLogin = useCallback(() => {
         userLogins(userLogin).then(response => {
-            console.log(response)
-            console.log("response.userId :", response.userId)
-            console.log("response.userPw :", response.userPw)
-            if(response.userId == undefined) {
+            if(response.userName == undefined) {
                 alert("입력하신 id가 일치하지 않습니다.");
             } else if(response.userPw == null) {
                 console.log(response.userPw);
                 alert("입력하신 비밀번호가 일치하지 않습니다.");
-            } else if(response.userId === userLogin.userId) {
+            } else if(response.userName === userLogin.userName) {
                 // id, pw 모두 일치
                 alert("로그인에 성공하셨습니다.")
                 let sessionStorage = window.sessionStorage;
-                sessionStorage.setItem("user_id", userLogin.userId);
+                sessionStorage.setItem("user_Name", userLogin.userName);
                 sessionStorage.setItem("user_pw", userLogin.userPw);
-
+                toGet(response.userId)
             }
             // 작업 완료 되면 페이지 이동(새로고침)
-            navigate('/');
+            navigate(`/`);
         })
-            .catch(error => {
-                alert("입력하신 로그인정보가 맞지않습니다.")
-                window.location.reload();
-            });
+            // .catch(error => {
+            //     alert("입력하신 로그인정보가 맞지않습니다.")
+            //     window.location.reload();
+            // });
     }, [userLogin])
+
+
 
     // 쿠기(아이디 저장)
 
     //아이디 기억하기
     const [isRemember, setIsRemember] = useState(false); //아이디 저장 체크여부
-    const [cookies, setCookie, removeCookie] = useCookies(["rememberUserId"]); //쿠키이름
+    const [cookies, setCookie, removeCookie] = useCookies(["rememberUserName"]); //쿠키이름
 
     useEffect(() => { //페이지가 최초 렌더링 될 경우
-        if(cookies.rememberUserId !== undefined) {
-            setUserLogin({ ...userLogin, userId: cookies.rememberUserId }); // userLogin에 저장된 쿠키아이디 셋팅
+        if(cookies.rememberUserName !== undefined) {
+            setUserLogin({ ...userLogin, userName: cookies.rememberUserName }); // userLogin에 저장된 쿠키아이디 셋팅
             setIsRemember(true);
         }
     }, []);
@@ -68,11 +74,11 @@ const UserLogin = () => {
         //체크박스 상태 업데이트
         setIsRemember(e.target.checked);
         if (e.target.checked) {
-            // 쿠키에 userId 값 저장, 유효기간 200초
-            setCookie("rememberUserId", userLogin.userId, {maxAge: 2000});
+            // 쿠키에 userName 값 저장, 유효기간 200초
+            setCookie("rememberUserName", userLogin.userName, {maxAge: 2000});
         } else {
             //체크 안 되어 있으면 쿠키 삭제
-            removeCookie("rememberUserId");
+            removeCookie("rememberUserName");
         }
     };
 
@@ -97,9 +103,9 @@ const UserLogin = () => {
                 <Form>
                     <Form.Group className="mb-3 mt-3"  controlId="formGroupEmail">
                         <Form.Label>ID</Form.Label>
-                        <Form.Control name='userId' type="text" placeholder="아이디를 입력하세요." className='h-25'
+                        <Form.Control name='userName' type="text" placeholder="아이디를 입력하세요." className='h-25'
                                       onChange={onChange}
-                                      defaultValue={userLogin.userId}
+                                      defaultValue={userLogin.userName}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -150,6 +156,8 @@ const UserLogin = () => {
             </Row>
         </Container>
     )
+
+
 }
 
 export default UserLogin

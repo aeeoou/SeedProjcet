@@ -52,6 +52,7 @@ import AdminAnswer from '../page/admin/inquiry/01';
 import AdminAnswerCreate from '../page/admin/inquiry/02';
 import AdminFixAnswer from '../page/admin/inquiry/03';
 import AdminAnswerDelComplete from '../page/admin/inquiry/04';
+import NavCanvas from "../page/navigation/01";
 
 const rootRouter = createBrowserRouter([
     {
@@ -81,11 +82,11 @@ const rootRouter = createBrowserRouter([
         element: <Suspense><UserFindPw/></Suspense>
     },
     {
-        path: '/userPwUpdate/:userId',
+        path: '/userPwUpdate/:userName',
         element: <Suspense><UserPwUpdate/></Suspense>
     },
     {
-        path: '/userUpdate',
+        path: '/userUpdate/:userId',
         element: <Suspense><UserUpdate/></Suspense>
     },
     {
@@ -244,6 +245,10 @@ const rootRouter = createBrowserRouter([
         path: '/adminAnswerDelComplete',
         element: <Suspense><AdminAnswerDelComplete/></Suspense>
     }
+    // {
+    //     path: '/navCanvas/:userId',
+    //     element: <Suspense><NavCanvas/>></Suspense>
+    // }
 ])
 
 export default rootRouter

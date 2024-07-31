@@ -16,7 +16,7 @@ const AdminAdvertisementCreate = () => {
                             <input type="text"
                                     class="form-control"
                                     placeholder="식당명을 입력하세요."
-                                    aria-label="Recipient's username"
+                                    aria-label="Recipient's personalName"
                                     aria-describedby="button-addon2">
                             </input>
                         </div>

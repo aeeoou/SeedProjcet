@@ -1,11 +1,15 @@
 import {Button, Offcanvas, Navbar, Container, Row, Col} from 'react-bootstrap'
 import {Justify} from 'react-bootstrap-icons'
 import { useState } from 'react';
+import {useLocation} from "react-router-dom";
 
-const NavOffcanvas = () => {
+
+const NavCanvas = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const location = useLocation();
+
 
     let sessionStorage = window.sessionStorage;
     return (
@@ -19,7 +23,7 @@ const NavOffcanvas = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className='fw-bold mb-3'>-여기 맛있당-</div>
-                    {sessionStorage.getItem("user_id") ? (
+                    {sessionStorage.getItem("user_Name") ? (
                         <Row >
                          <Col>
                              <Navbar >
@@ -44,7 +48,7 @@ const NavOffcanvas = () => {
                              </Navbar>
                              <Navbar>
                                  <Container>
-                                 <Navbar.Brand href="/userUpdate">회원 수정</Navbar.Brand>
+                                    <Navbar.Brand href={`/userUpdate`}>회원 수정</Navbar.Brand>
                                  </Container>
                              </Navbar>
                              <div className='fw-bold mb-3 mt-4'>-고객센터-</div>
@@ -62,6 +66,6 @@ const NavOffcanvas = () => {
     )
 }
 
-export default NavOffcanvas
+export default NavCanvas
 
     

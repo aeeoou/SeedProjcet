@@ -1,6 +1,6 @@
 package com.my.restaurant.controller;
 
-import com.my.restaurant.domain.dto.*;
+import com.my.restaurant.domain.dto.userDto.*;
 import com.my.restaurant.repository.UserRepository;
 import com.my.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,18 +23,19 @@ public class UserController {
 	@PostMapping("/login")
 	public UserLoginDto login(@RequestBody final UserLoginDto params) {
 		UserLoginDto userLoginDto = userService.findBy(params);
+		System.out.println(userLoginDto);
 		return userLoginDto;
 	}
 
-	@PostMapping("/findUserId")
+	@PostMapping("/findUserName")
 	public String userFindId(@RequestBody final UserFindIdDto params) {
-		String result= userService.findBy_Id(params.getUserName(), params.getUserEmail());
+		String result= userService.findBy_Id(params.getPersonalName(), params.getUserEmail());
 		return result;
 	}
 
 	@PostMapping("/findUserPw")
 	public String userFindPw(@RequestBody final UserFindPwDto params) {
-		String result= userService.findBy_pw(params.getUserId(), params.getUserEmail(), params.getPhoneNumber());
+		String result= userService.findBy_pw(params.getUserName(), params.getUserEmail(), params.getPhoneNumber());
 		return result;
 	}
 
@@ -48,6 +49,11 @@ public class UserController {
 		userService.addUser(userSignUpDto);
 		return Map.of("result", "USER 추가");
 	}
+
+//	@GetMapping("{userName}")
+//	public UserDto getUser(@PathVariable("userName") String userName) {
+//		return userService.getUser(userName);
+//	}
 
 
 	@PostMapping("/sendSMS")
@@ -64,8 +70,8 @@ public class UserController {
 		return cerNum;
 	}
 
-	@GetMapping("/checkUserId/{userId}")
-	public ResponseEntity<Boolean> checkUserIdDuplicate(@PathVariable String userId) throws BadRequestException{
-			return ResponseEntity.ok(userService.isUserIdAvailable(userId));
+	@GetMapping("/checkUserName/{userName}")
+	public ResponseEntity<Boolean> checkUserNameDuplicate(@PathVariable String userName) throws BadRequestException{
+			return ResponseEntity.ok(userService.isUserNameAvailable(userName));
 	}
 }

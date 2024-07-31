@@ -1,8 +1,8 @@
 package com.my.restaurant.service;
 
-import com.my.restaurant.domain.dto.UserLoginDto;
-import com.my.restaurant.domain.dto.UserPwFixDto;
-import com.my.restaurant.domain.dto.UserSignUpDto;
+import com.my.restaurant.domain.dto.userDto.UserLoginDto;
+import com.my.restaurant.domain.dto.userDto.UserPwFixDto;
+import com.my.restaurant.domain.dto.userDto.UserSignUpDto;
 import com.my.restaurant.domain.entity.User;
 import com.my.restaurant.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @Transactional
 @RequiredArgsConstructor //Autowired를 사용하지않고 의존성주입을 할때 사용
@@ -25,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserLoginDto findBy(UserLoginDto params) {
-		User user = userRepository.findByUserIdAndUserPw(params.getUserId(), params.getUserPw());
+		User user = userRepository.findByUserNameAndUserPw(params.getUserName(), params.getUserPw());
 		System.out.println(user);
 		UserLoginDto userLoginDto = modelMapper.map(user, UserLoginDto.class);
 		return userLoginDto;
@@ -33,16 +31,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void passwordFix(UserPwFixDto userPwFixDto) {
-		userRepository.patchPw(userPwFixDto.getUserPw(), userPwFixDto.getUserId());
+		userRepository.patchPw(userPwFixDto.getUserPw(), userPwFixDto.getUserName());
 
 	}
 
 
 	@Override
-	public String findBy_Id(String userName, String userEmail) {
+	public String findBy_Id(String personalName, String userEmail) {
 		String result = "";
 		try {
-			result = userRepository.find_id(userName, userEmail);
+			result = userRepository.find_id(personalName, userEmail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,10 +48,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String findBy_pw(String userName, String userEmail, String phoneNumber) {
+	public String findBy_pw(String personalName, String userEmail, String phoneNumber) {
 		String result = "";
 		try {
-			result = userRepository.find_pw(userName, userEmail, phoneNumber);
+			result = userRepository.find_pw(personalName, userEmail, phoneNumber);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,6 +63,13 @@ public class UserServiceImpl implements UserService {
 		User user = modelMapper.map(userSignUpDto, User.class);
 		userRepository.save(user);
 	}
+
+//	@Override
+//	public UserDto getUser(String userName) {
+//		List<User> result = userRepository.findByUserName(userName);
+//		UserDto userDto = modelMapper.map(result, UserDto.class);
+//		return userDto;
+//	}
 
 	@Override
 	public void certifiedPhoneNumber(String u_phone, String cerNum) {
@@ -87,8 +92,8 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	public boolean isUserIdAvailable(String userId) {
-		return userRepository.existsByUserId(userId);
+	public boolean isUserNameAvailable(String userName) {
+		return userRepository.existsByUserName(userName);
 	}
 
 

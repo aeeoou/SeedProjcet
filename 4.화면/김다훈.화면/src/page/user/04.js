@@ -3,13 +3,13 @@ import { Col, Row, Form, Button} from "react-bootstrap"
 import MyBackButton from "../navigation/02"
 import UserCheckModal from "./UserCheckModal"
 import {useCallback, useState} from "react";
-import {findUserId} from "../../api/userApi";
+import {findUserName} from "../../api/userApi";
 import {useNavigate} from "react-router-dom";
 
 
 const UserFindId = () => {
     const [findUser, setFindUser] = useState({
-        userName:'',
+        personalName:'',
         userEmail:''
     })
 
@@ -21,7 +21,7 @@ const UserFindId = () => {
     const navigate = useNavigate()
 
     const onClickUserFindId = useCallback(() => {
-        findUserId(findUser).then(response => {
+        findUserName(findUser).then(response => {
             if(response != ""){
                 setFindUser(response);
                 alert(`회원님의 아이디는 ${response} 입니다.`)
@@ -48,7 +48,7 @@ const UserFindId = () => {
                         아이디 찾기
                     </Row>
                     <Row className="d-flex justify-content-center mt-4">
-                        <Form.Control type="text" name="userName" placeholder="이름" className="w-75" onChange={onChange}/>
+                        <Form.Control type="text" name="personalName" placeholder="이름" className="w-75" onChange={onChange}/>
                     </Row>
                     <Row className="d-flex justify-content-center">
                         <Form.Control type="text" name="userEmail" placeholder="이메일" className="w-75 mt-3" onChange={onChange}/>

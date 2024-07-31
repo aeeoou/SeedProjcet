@@ -1,25 +1,33 @@
-import {useCallback, useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 import { Col, Row, Modal, Button} from "react-bootstrap"
 import UserLayout from '../UserLayout'
 import MyBackButton from '../navigation/02'
 import UserCheckModal from "./UserCheckModal"
-import {sendSMS} from "../../api/userApi";
+import {getUser, sendSMS} from "../../api/userApi";
+import {userUpdateAx} from "../../api/userApi";
+import {useParams} from "react-router-dom";
 
 /* USER.07 회원수정 */
 const UserUpdate = ({children}) => {
-
-
     const [userUpdate, setUserUpdate] = useState({
         userId: '',
+        userName: '',
         userPw: '',
         userEmail: '',
         phoneNumber: '',
         checkSMS:''
     })
 
+    const {userName} = useParams();
+    userUpdate.userName = userName
+
+    // useEffect(() => {
+    //     getUser(userName).then(userUpdate => setUserUpdate(userUpdate))
+    // }, [userName])
+
     const onClickUpdate = () => {
         userUpdateAx(userUpdate).then((response) => {
-            alert("비밀번호가 변경되었습니다.")
+            alert("회원정보가 수정되었습니다.")
         }).catch((error) => {
             console.log(error);
         });
@@ -109,21 +117,21 @@ const UserUpdate = ({children}) => {
 
                             <div className="mb-3 fw-bold">
                                 <p>*비밀번호</p>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder='영문,숫자,한글 조합의 4~12자리로 입력해주세요.' ></input>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder='영문,숫자,한글 조합의 4~12자리로 입력해주세요.' onChange={onChange} ></input>
                             </div>
                             <div className="mb-3 fw-bold">
                                 <p>*비밀번호 확인</p>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder='영문,숫자,한글 조합의 4~12자리로 입력해주세요.' ></input>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder='영문,숫자,한글 조합의 4~12자리로 입력해주세요.' onChange={onChange} ></input>
                             </div>
                             <div className="mb-3 fw-bold">
                                 <p>*이메일</p>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></input>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={onChange}></input>
                             </div>
                             <div className="mb-3 fw-bold">
                                 <p>휴대번 번호</p>
                                 <Row>
                                     <Col xs={9}>
-                                        <input type="text" class="form-control" id="exampleInputPassword1"  ></input>
+                                        <input type="text" class="form-control" id="exampleInputPassword1" onChange={onChange}></input>
                                     </Col>
                                     <Col xs={3}>
                                         <UserCheckModal btnName={'인증'} modalBody={'인증번호를 발송했습니다.'}/>

@@ -28,7 +28,7 @@ const AdminAdvertisementUpdate = () => {
                         <div className="mb-2">
                             <input type="text"
                                 className="form-control fs-4 fw-bold w-75"
-                                aria-label="Recipient's username"
+                                aria-label="Recipient's personalName"
                                 aria-describedby="button-addon2"
                                 defaultValue={advertisement.restaurantName}
                             />

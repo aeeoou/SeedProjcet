@@ -16,10 +16,11 @@ public class User {
 	@Id //기본키(PK-key 설정)
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "userSequence")
 	@SequenceGenerator(name="userSequence", sequenceName = "user_seq", initialValue = 1, allocationSize = 1)
-	private Long userNo;
-	private String userId;
-	private String userPw;
+	private Long userId;
+	@Column(unique=true)
 	private String userName;
+	private String userPw;
+	private String personalName;
 	private String phoneNumber;
 	private LocalDate birthDay;
 	private String userEmail;
