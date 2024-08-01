@@ -19,5 +19,6 @@ public class AdvertisementDto {
     private String advertisementContent;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")        // JSON형식으로 데이터를 직렬화할 때 날짜 형식(yyyy-MM-dd)을 지정한다.
     private LocalDate createDate;
-    private byte[] advertisementImage;
+    private byte[] advertisementImage;                                      // 이미지 파일을 업로드할 수 있도록 'byte[] advertisementImage' 필드를 추가
+    private String advertisementImageUrl;                                   // 이미지 파일을 byte 배열로 저장한다.
 }

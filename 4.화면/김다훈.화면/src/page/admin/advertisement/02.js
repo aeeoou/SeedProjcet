@@ -9,31 +9,34 @@ const AdminAdvertisementCreate = () => {
     const [restaurantName, setRestaurantName] = useState('');
     const [advertisementTitle, setAdvertisementTitle] = useState('');
     const [advertisementContent, setAdvertisementContent] = useState('');
-    const [advertisementImage, setAdvertisementImage] = useState(null); // 파일 상태 추가
-
-    const navigate = useNavigate(); // 페이지 이동을 위해 useNavigate 훅 사용
+    const [advertisementImage, setAdvertisementImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null); // Add state for image URL
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const advertisementData = {
-            restaurantName,
-            advertisementTitle,
-            advertisementContent,
-        };
 
-    try {
-        const response = await axios.post('http://localhost:8000/advertisement/add', advertisementData, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log(response.data);
-        // 성공적으로 저장된 후 adminAdvertisement 페이지로 이동
-        navigate('/adminAdvertisement');
-    } catch (error) {
-        console.error('There was an error saving the advertisement!', error);
-    }
-};
+        const formData = new FormData();
+        formData.append('restaurantName', restaurantName);
+        formData.append('advertisementTitle', advertisementTitle);
+        formData.append('advertisementContent', advertisementContent);
+        if (advertisementImage) {
+            formData.append('advertisementImage', advertisementImage);
+        }
+
+        try {
+            const response = await axios.post('http://localhost:8000/advertisement/add', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
+            setImageUrl(response.data.imageUrl); // Update state with image URL
+            navigate('/adminAdvertisement');
+        } catch (error) {
+            console.error('There was an error saving the advertisement!', error);
+        }
+    };
 
     return (
         <>
@@ -60,9 +63,9 @@ const AdminAdvertisementCreate = () => {
                                 />
                             </div>
                         </div>
-                        <hr />
-                        <div className='border mb-4 p-4 d-flex align-items-center justify-content-center fs-3 fw-bold h-50' style={{ height: '150px' }}>
-                            식당이미지
+                        <hr/>
+                        <div className='border mb-4 p-4 d-flex align-items-center justify-content-center fs-3 fw-bold h-50' style={{height: '150px'}}>
+                            {imageUrl ? <img src={imageUrl} alt="Advertisement" style={{ maxHeight: '150px', maxWidth: '100%' }} /> : '식당이미지'}
                         </div>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Control
@@ -71,7 +74,7 @@ const AdminAdvertisementCreate = () => {
                                 onChange={(e) => setAdvertisementImage(e.target.files[0])}
                             />
                         </Form.Group>
-                        <hr />
+                        <hr/>
                         <Form.Group className="mb-3" controlId="advertisement">
                             <Form.Control
                                 as="textarea"
@@ -88,14 +91,14 @@ const AdminAdvertisementCreate = () => {
                             <Button
                                 className='btn btn-primary btn-outline-warning mx-1 my-5 p-2 btn-sm'
                                 onClick={handleSubmit}
-                                style={{ background: 'orange' }}
+                                style={{background: 'orange'}}
                             >
                                 등록
                             </Button>
                             <Link to='/adminAdvertisement' className='d-block'>
                                 <Button
                                     className='btn btn-primary btn-outline-warning mx-1 my-5 p-2 btn-sm'
-                                    style={{ background: 'orange' }}
+                                    style={{background: 'orange'}}
                                 >
                                     취소
                                 </Button>

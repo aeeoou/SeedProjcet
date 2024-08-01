@@ -23,8 +23,9 @@ public class Advertisement {
     private String advertisementTitle;
     private String advertisementContent;
     private LocalDate createDate;
-    @Lob // 이미지를 저장할 필드에 @Lob 애너테이션 추가
-    private byte[] advertisementImage; // 이미지 필드 추가
+    @Lob // 이미지를 저장할 필드에 @Lob 애너테이션 사용
+    private byte[] advertisementImage; // 이미지 파일을 byte 배열로 저장
+    private String advertisementImageUrl; //  Optional, if you want to store the URL in the database
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
@@ -47,6 +48,7 @@ public class Advertisement {
     }
 
     // 이미지 필드를 위한 Setter 추가
+    // 이미지 파일을 '저장'할 수 있도록 'byte[] advertisementImage' 필드를 추가
     public void setAdvertisementImage(byte[] advertisementImage) {
         this.advertisementImage = advertisementImage;
     }

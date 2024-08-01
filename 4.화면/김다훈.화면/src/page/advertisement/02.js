@@ -11,7 +11,7 @@ const SelectAdvertisement = ({children}) => {
                         <main>
                             {children}
                             <br/>
-                            <div classNamme='my-5 text-start'>
+                            <div className='my-5 text-start'>
                                 <div className='fw-bold fs-4'>
                                     삼원가든 충무로점
                                 </div>

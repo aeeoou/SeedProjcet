@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// ServiceImpl 클래스는 서비스 구현 클래스다.
 // AdvertisementServiceImpl 클래스는 광고를 생성할 때 데이터와 현재 날짜를 설정하고, DB에 저장한다.
 // 또한, 광고 목록을 조회하고 검색할 때 DTO로 변환하여 반환한다.
 
@@ -69,6 +70,21 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         Advertisement advertisement = advertisementRepository.findByAdvertisementNo(advertisementNo);
         if (advertisement != null) {
             advertisementRepository.delete(advertisement);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // 광고 수정(업데이트) 로직
+    @Override
+    @Transactional
+    public boolean updateAdvertisement(Long advertisementNo, AdvertisementDto advertisementDto) {
+        Advertisement advertisement = advertisementRepository.findByAdvertisementNo(advertisementNo);
+        if (advertisement != null) {
+            advertisement.setRestaurantName(advertisementDto.getRestaurantName());
+            advertisement.setAdvertisementContent(advertisementDto.getAdvertisementContent());
+            advertisementRepository.save(advertisement);
             return true;
         } else {
             return false;
