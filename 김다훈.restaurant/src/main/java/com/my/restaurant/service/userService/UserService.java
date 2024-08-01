@@ -1,11 +1,9 @@
 package com.my.restaurant.service.userService;
 
-import com.my.restaurant.domain.dto.userDto.UserDto;
-import com.my.restaurant.domain.dto.userDto.UserLoginDto;
-import com.my.restaurant.domain.dto.userDto.UserPwFixDto;
-import com.my.restaurant.domain.dto.userDto.UserSignUpDto;
+import com.my.restaurant.domain.dto.userDto.*;
 
 public interface UserService {
+	void userUpdate(UserUpdateDto userUpdateDto);
 	UserDto getUser(Long userId);
 	UserLoginDto findBy(UserLoginDto params);
 	String findBy_Id(String personalName, String userEmail);

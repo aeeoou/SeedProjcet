@@ -18,13 +18,14 @@ export const fixUserPw = async passwordFix => {
     return response.data
 }
 
+
 export const getUser = async userId => {
     const response = await axios.get(`${prefix}/${userId}`)
     return response.data
 }
 
     export const userUpdateAx = async userUpdate => {
-    const response = await axios.post(`${prefix}/userUpdate`, userUpdate)
+    const response = await axios.patch(`${prefix}/userUpdate`, userUpdate)
     return response.data
 }
 

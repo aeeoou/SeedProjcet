@@ -1,9 +1,6 @@
 package com.my.restaurant.service.userService;
 
-import com.my.restaurant.domain.dto.userDto.UserDto;
-import com.my.restaurant.domain.dto.userDto.UserLoginDto;
-import com.my.restaurant.domain.dto.userDto.UserPwFixDto;
-import com.my.restaurant.domain.dto.userDto.UserSignUpDto;
+import com.my.restaurant.domain.dto.userDto.*;
 import com.my.restaurant.domain.entity.user.User;
 import com.my.restaurant.repository.userRepository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +32,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void passwordFix(UserPwFixDto userPwFixDto) {
 		userRepository.patchPw(userPwFixDto.getUserPw(), userPwFixDto.getUserName());
-
 	}
 
 
@@ -73,6 +69,12 @@ public class UserServiceImpl implements UserService {
 		User user = result.orElseThrow();
 		UserDto userDto = modelMapper.map(user, UserDto.class);
 		return userDto;
+	}
+
+	@Override
+	public void userUpdate(UserUpdateDto userUpdateDto) {
+		userRepository.patchUser(userUpdateDto.getUserName(), userUpdateDto.getPersonalName(), userUpdateDto.getBirthDay(),
+				userUpdateDto.getPhoneNumber(), userUpdateDto.getUserPw(), userUpdateDto.getUserEmail(), userUpdateDto.getUserId());
 	}
 
 	@Override

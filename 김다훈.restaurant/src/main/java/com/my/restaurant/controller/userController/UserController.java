@@ -40,8 +40,8 @@ public class UserController {
 	}
 
 	@PatchMapping("/passwordFix")
-	public void passwordFix(@RequestBody UserPwFixDto UserPwFixDto) {
-		userService.passwordFix(UserPwFixDto);
+	public void passwordFix(@RequestBody UserPwFixDto userPwFixDto) {
+		userService.passwordFix(userPwFixDto);
 	}
 
 	@PostMapping("/add")
@@ -55,6 +55,10 @@ public class UserController {
 		return userService.getUser(userId);
 	}
 
+	@PatchMapping("/userUpdate")
+	public void userUpdate(@RequestBody UserUpdateDto userUpdateDto) {
+		userService.userUpdate(userUpdateDto);
+	}
 
 	@PostMapping("/sendSMS")
 	public String sendSMS (@RequestParam String u_phone) { // u_phone은 수신번호

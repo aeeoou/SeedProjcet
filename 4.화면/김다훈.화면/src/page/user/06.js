@@ -29,14 +29,18 @@ const UserPwUpdate = ({children}) => {
         });
     }
 
-    const [isPassword, setIsPassword] = useState(false)
-    const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
 
-    const [passwordMessage, setPasswordMessage] = useState('')
-    const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')
 
-    const [password, setPassword] = useState('')
-    const [passwordConfirm, setPasswordConfirm] = useState('')
+
+    const [passwordMessage, setPasswordMessage] = useState('');
+    const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
+
+    const [isPassword, setIsPassword] = useState(false);
+    const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+
+
 
     const onChangePassword = useCallback(e => {
         const passwordRegex = /^[a-zA-z0-9ㄱ-ㅎ가-힣]{4,12}$/ // 영문, 숫자, 한글 조합 4~12자 이내

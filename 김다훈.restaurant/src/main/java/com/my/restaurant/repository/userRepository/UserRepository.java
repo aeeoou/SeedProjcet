@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUserNameAndUserPw(final String userName, final String userPw);
@@ -20,6 +22,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u set u.userPw = :userPw where u.userName = :userName")
     void patchPw(@Param("userPw") String userPw, @Param("userName") String userName);
+
+    @Modifying
+    @Query("UPDATE User u set u.userName = :userName, u.personalName = :personalName, u.birthDay = :birthDay, " +
+            "u.phoneNumber = :phoneNumber, u.userPw = :userPw, u.userEmail = :userEmail where u.userId = :userId")
+    void patchUser(@Param("userName") String userName, @Param("personalName") String personalName,
+                   @Param("birthDay") LocalDate birthDay, @Param("phoneNumber") String phoneNumber,
+                   @Param("userPw") String userPw, @Param("userEmail") String userEmail, @Param("userId") Long userId);
 
     boolean existsByUserName(String userName);
 
