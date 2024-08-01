@@ -4,8 +4,6 @@ import com.my.restaurant.domain.dto.userDto.*;
 import com.my.restaurant.repository.userRepository.UserRepository;
 import com.my.restaurant.service.userService.UserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -75,7 +73,7 @@ public class UserController {
 	}
 
 	@GetMapping("/checkUserName/{userName}")
-	public ResponseEntity<Boolean> checkUserNameDuplicate(@PathVariable String userName) throws BadRequestException{
-			return ResponseEntity.ok(userService.isUserNameAvailable(userName));
+	public Boolean checkUserNameDuplicate(@PathVariable String userName) {
+			return userService.isUserNameAvailable(userName);
 	}
 }

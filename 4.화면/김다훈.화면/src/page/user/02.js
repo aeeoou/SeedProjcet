@@ -192,26 +192,19 @@ const UserSignUp = () => {
         }
     }, [])
 
-
-
-
     const [available, setAvailable] = useState(false);
 
-    const handleUserNameChange = useCallback(() => {
-
+    const userNameCheck = useCallback(() => {
         handleCheckDuplicate(user.userName)
             .then(response => {
                 console.log("이건 받은값 :", response.data)
                 if(response.data === true) {
-                    alert("중복된 아이디입니다.")
-                    setAvailable(false);
-                } else {
                     alert("가능한 아이디입니다.")
                     setAvailable(true);
+                } else {
+                    alert("중복된 아이디입니다.")
+                    setAvailable(false);
                 }
-
-
-
             });
     }, [user.userName]);
 
@@ -235,7 +228,7 @@ const UserSignUp = () => {
 
                         </Col>
                         <Col className='d-flex align-items-center justify-content-center' xs={3}>
-                            <Button variant="warning" onClick={handleUserNameChange}>중복확인</Button>
+                            <Button variant="warning" onClick={userNameCheck}>중복확인</Button>
                         </Col>
                     </Row>
                     <Row className={'mt-3 ms-2'}>{user.userName.length > 0 &&
@@ -381,7 +374,7 @@ const UserSignUp = () => {
                             <UserCheckModal btnName={'회원가입'} onClickUserAdd={onClickUserAdd}
                                             modalBody={'회원가입이 완료되었습니다.'}
                                             completeBtn={'/userCompleteSignUp'}
-                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay && isCheckSMS)}
+                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay && isCheckSMS && available)}
                             />
                         </Col>
                     </Row>

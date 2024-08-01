@@ -30,6 +30,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
                    @Param("birthDay") LocalDate birthDay, @Param("phoneNumber") String phoneNumber,
                    @Param("userPw") String userPw, @Param("userEmail") String userEmail, @Param("userId") Long userId);
 
-    boolean existsByUserName(String userName);
 
+    @Query("SELECT nvl(u.userName, 1) from User u where u.userName = :userName")
+    Boolean duplicatedUserName(@Param("userName") String userName);
 }
