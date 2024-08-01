@@ -18,8 +18,8 @@ export const fixUserPw = async passwordFix => {
     return response.data
 }
 
-export const getUser = async userName => {
-    const response = await axios.get(`${prefix}/${userName}`)
+export const getUser = async userId => {
+    const response = await axios.get(`${prefix}/${userId}`)
     return response.data
 }
 

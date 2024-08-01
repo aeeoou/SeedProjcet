@@ -1,14 +1,12 @@
 import {Button, Offcanvas, Navbar, Container, Row, Col} from 'react-bootstrap'
 import {Justify} from 'react-bootstrap-icons'
 import { useState } from 'react';
-import {useLocation} from "react-router-dom";
 
 
-const NavCanvas = () => {
+const NavCanvas = ({userId}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const location = useLocation();
 
 
     let sessionStorage = window.sessionStorage;
@@ -48,7 +46,7 @@ const NavCanvas = () => {
                              </Navbar>
                              <Navbar>
                                  <Container>
-                                    <Navbar.Brand href={`/userUpdate`}>회원 수정</Navbar.Brand>
+                                    <Navbar.Brand href={`/userUpdate/${userId}`}>회원 수정</Navbar.Brand>
                                  </Container>
                              </Navbar>
                              <div className='fw-bold mb-3 mt-4'>-고객센터-</div>

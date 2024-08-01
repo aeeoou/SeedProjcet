@@ -28,17 +28,16 @@ const UserSignUp = () => {
     // 적은 휴대폰번호를 담아서 백엔드에 보내주는 함수
     const onClickSendPhoneNumber = useCallback(() => sendSMS(user.phoneNumber).then(data => {
         const cerNum = data;
-        alert('cerNum:' + cerNum)
+        alert("인증번호가 전송되었습니다.")
         setData(cerNum)
     }), [user.phoneNumber]);
 
+    const [isCheckSMS, setIsCheckSMS] = useState(false)
     const checkSMS = () => {
-        if (data === user.checkSMS) {
-            console.log(user.checkSMS)
-            console.log(data)
+        if (data == user.checkSMS) {
             alert("휴대폰 인증이 정상적으로 완료되었습니다.")
+            setIsCheckSMS(true)
         } else {
-            console.log(data)
             alert("인증번호가 올바르지 않습니다.")
         }
     }
@@ -382,7 +381,7 @@ const UserSignUp = () => {
                             <UserCheckModal btnName={'회원가입'} onClickUserAdd={onClickUserAdd}
                                             modalBody={'회원가입이 완료되었습니다.'}
                                             completeBtn={'/userCompleteSignUp'}
-                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay)}
+                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay && isCheckSMS)}
                             />
                         </Col>
                     </Row>

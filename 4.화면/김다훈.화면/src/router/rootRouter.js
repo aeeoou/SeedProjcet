@@ -59,6 +59,10 @@ const rootRouter = createBrowserRouter([
         path: '/',
         element: <Suspense><Main/></Suspense>
     },
+    {
+        path: '/:userId',
+        element: <Suspense><Main/></Suspense>
+    },
 
      /* user */
     {
@@ -124,7 +128,7 @@ const rootRouter = createBrowserRouter([
         element: <Suspense><ReservationCreate/></Suspense>
     },
     {
-        path: '/reservationRead',
+        path: '/reservationRead/:createdReservationId',
         element: <Suspense><ReservationRead/></Suspense>
     },
     {
@@ -244,11 +248,11 @@ const rootRouter = createBrowserRouter([
     {
         path: '/adminAnswerDelComplete',
         element: <Suspense><AdminAnswerDelComplete/></Suspense>
+    },
+    {
+        path: '/navCanvas/:userId',
+        element: <Suspense><NavCanvas/>></Suspense>
     }
-    // {
-    //     path: '/navCanvas/:userId',
-    //     element: <Suspense><NavCanvas/>></Suspense>
-    // }
 ])
 
 export default rootRouter

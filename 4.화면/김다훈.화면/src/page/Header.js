@@ -3,7 +3,7 @@ import {Row, Col, Button, Dropdown} from 'react-bootstrap'
 import {BellFill, XLg} from 'react-bootstrap-icons';
 import NavCanvas from './navigation/01'
 
-const Header = () => {
+const Header = ({userId}) => {
 
     let sessionStorage = window.sessionStorage;
 
@@ -43,7 +43,7 @@ const Header = () => {
                                     </Dropdown>
                                 </>
                                     ):(<Button className='me-1'id='login' href='/userLogin'>로그인</Button>)}              
-                                <NavCanvas/>
+                                <NavCanvas userId={userId}/>
                             </div>
                         </Col>
                     </Row>

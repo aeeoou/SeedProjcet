@@ -18,12 +18,12 @@ const UserUpdate = ({children}) => {
         checkSMS:''
     })
 
-    const {userName} = useParams();
-    userUpdate.userName = userName
+    const {userId} = useParams();
+    userUpdate.userId = userId
 
-    // useEffect(() => {
-    //     getUser(userName).then(userUpdate => setUserUpdate(userUpdate))
-    // }, [userName])
+    useEffect(() => {
+        getUser(userId).then(userUpdate => setUserUpdate(userUpdate))
+    }, [userId])
 
     const onClickUpdate = () => {
         userUpdateAx(userUpdate).then((response) => {
@@ -113,7 +113,6 @@ const UserUpdate = ({children}) => {
                                 <p className='fw-bold'> 이름: 김다훈 </p>
                                 <p className='fw-bold'> 생년월일: 1995-06-15</p>
                             </div>
-
 
                             <div className="mb-3 fw-bold">
                                 <p>*비밀번호</p>

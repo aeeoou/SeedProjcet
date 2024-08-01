@@ -1,13 +1,13 @@
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {Row, Col, Button, Form, InputGroup} from 'react-bootstrap'
 import UserLayout from './UserLayout';
 import {FaSearch} from 'react-icons/fa';
 
 
 const Main = () => {
-
+    const {userId} = useParams()
     return (
-        <UserLayout>
+        <UserLayout userId={userId}>
             <Row className='mt-5'>
                 <Col>
                     <div className='text-center fs-3 fw-bold mb-3'>환영합니다!</div>

@@ -22,7 +22,6 @@ const UserLogin = () => {
     })
 
 
-
     const onChange = e => {
         userLogin[e.target.name] = e.target.value
         setUserLogin({...userLogin})
@@ -30,9 +29,15 @@ const UserLogin = () => {
 
     const {toGet} = useTo()
 
+
+
     // useCallback : 특정 함수를 새로 만들지 않고 재사용하고 싶을때 사용한다.
     const onClickUserLogin = useCallback(() => {
         userLogins(userLogin).then(response => {
+            // const toFindUserId = () => navigate({
+            //     pathname: `../navCanvas/${response.userId}`
+            // })
+
             if(response.userName == undefined) {
                 alert("입력하신 id가 일치하지 않습니다.");
             } else if(response.userPw == null) {
@@ -47,7 +52,7 @@ const UserLogin = () => {
                 toGet(response.userId)
             }
             // 작업 완료 되면 페이지 이동(새로고침)
-            navigate(`/`);
+            navigate(`/${response.userId}`);
         })
             // .catch(error => {
             //     alert("입력하신 로그인정보가 맞지않습니다.")
