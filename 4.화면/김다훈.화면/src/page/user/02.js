@@ -197,11 +197,11 @@ const UserSignUp = () => {
     const userNameCheck = useCallback(() => {
         handleCheckDuplicate(user.userName)
             .then(response => {
-                console.log("이건 받은값 :", response.data)
-                if(response.data === true) {
+                console.log("이건 받은값 :", response)
+                if(response === true) {
                     alert("가능한 아이디입니다.")
                     setAvailable(true);
-                } else {
+                } else if(response === false) {
                     alert("중복된 아이디입니다.")
                     setAvailable(false);
                 }

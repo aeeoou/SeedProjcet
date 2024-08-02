@@ -11,5 +11,5 @@ public interface UserService {
 	void passwordFix(UserPwFixDto userPwFixDto);
 	void addUser(UserSignUpDto userSignUpDto);
 	void certifiedPhoneNumber(String u_phone, String cerNum);
-	boolean isUserNameAvailable(String userName);
+	Boolean isUserNameAvailable(String userName);
 }
