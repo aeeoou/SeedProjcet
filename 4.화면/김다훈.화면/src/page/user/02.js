@@ -374,7 +374,7 @@ const UserSignUp = () => {
                             <UserCheckModal btnName={'회원가입'} onClickUserAdd={onClickUserAdd}
                                             modalBody={'회원가입이 완료되었습니다.'}
                                             completeBtn={'/userCompleteSignUp'}
-                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay && isCheckSMS && available)}
+                                            condition={!(isName && isEmail && isPassword && isPasswordConfirm && isPhoneNumber && isBirthDay && isCheckSMS)}
                             />
                         </Col>
                     </Row>

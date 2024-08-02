@@ -12,4 +12,5 @@ public interface AdvertisementService {
     List<AdvertisementDto> getAllAdvertisements();            // 광고목록조회 메서드
     List<AdvertisementDto> searchAdvertisements(String type, String query); // 광고검색 메서드
     boolean deleteAdvertisement(Long advertisementNo);        // 광고 삭제 메서드 추가
+    boolean updateAdvertisement(Long advertisementNo, AdvertisementDto advertisementDto);   // 광고 수정(업데이트) 메서드 추가
 }
