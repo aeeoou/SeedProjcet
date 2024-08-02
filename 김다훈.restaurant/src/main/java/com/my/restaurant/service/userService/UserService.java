@@ -10,6 +10,7 @@ public interface UserService {
 	String findBy_pw(String personalName, String userEmail, String phoneNumber);
 	void passwordFix(UserPwFixDto userPwFixDto);
 	void addUser(UserSignUpDto userSignUpDto);
+	void delUser(Long userId);
 	void certifiedPhoneNumber(String u_phone, String cerNum);
 	Boolean isUserNameAvailable(String userName);
 }

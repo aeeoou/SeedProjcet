@@ -1,5 +1,6 @@
 package com.my.restaurant.domain.entity.restaurant;
 
+import com.my.restaurant.domain.entity.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,4 +29,7 @@ public class Restaurant {
 
     @Column(nullable = false)
     private boolean isReservationAvailable;
+
+    @OneToOne(mappedBy = "restaurant")
+    private Reservation reservation;
 }

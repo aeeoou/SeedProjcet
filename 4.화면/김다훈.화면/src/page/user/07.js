@@ -3,7 +3,7 @@ import { Col, Row, Modal, Button} from "react-bootstrap"
 import UserLayout from '../UserLayout'
 import MyBackButton from '../navigation/02'
 import UserCheckModal from "./UserCheckModal"
-import {getUser, sendSMS} from "../../api/userApi";
+import {getUser, sendSMS, userDelete} from "../../api/userApi";
 import {userUpdateAx} from "../../api/userApi";
 import {useParams} from "react-router-dom";
 
@@ -52,6 +52,10 @@ const UserUpdate = () => {
             console.log(error);
         });
     }
+
+    const onClickDelete = useCallback(() => {
+        userDelete(getUserVar.userId).then();
+    },[getUserVar.userId])
 
     const onChange = e => {
         userUpdate[e.target.name] = e.target.value
@@ -346,10 +350,9 @@ const UserUpdate = () => {
                                 <p className="mt-3 text-center">*은 필수입력 사항입니다.</p>
                             </div>
                             <div className='d-flex justify-content-center'>
-                                <Button className={'h-25 mt-2'}  variant={'warning'}
+                                <Button className={'h-25 mt-2'}  variant={'warning'} href={'/userCompleteUpdate'}
                                         disabled={!(isPhoneNumber && isEmail && isPasswordConfirm && isPassword && isCheckSMS)}
                                         onClick={onClickUpdate}>변경저장</Button>
-                                {/*href={'/userCompleteUpdate'}*/}
                                 <Button variant="warning" onClick={handleShow} className="h-25 mt-2 ms-3"
                                         disabled={!(isPhoneNumber && isCheckSMS)}>
                                     회원 탈퇴
@@ -364,7 +367,10 @@ const UserUpdate = () => {
                                         <Button variant="warning" onClick={handleClose}>
                                             아니오
                                         </Button>
-                                        <Button variant="warning" onClick={handleClose} href="/userCompleteDelete">
+                                        <Button variant="warning" onClick={() => {
+                                            handleClose();
+                                            onClickDelete();
+                                        }} href="/userCompleteDelete">
                                             예
                                         </Button>
                                     </Modal.Footer>

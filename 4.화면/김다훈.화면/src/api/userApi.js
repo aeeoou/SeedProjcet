@@ -24,12 +24,15 @@ export const getUser = async userId => {
     return response.data
 }
 
-    export const userUpdateAx = async userUpdate => {
+export const userUpdateAx = async userUpdate => {
     const response = await axios.patch(`${prefix}/userUpdate`, userUpdate)
     return response.data
 }
 
-
+export const userDelete = async userId => {
+    const response = await axios.delete(`${prefix}/del/${userId}`)
+    return response.data
+}
 
 export const sendSMS = async (u_phone ,cerNum) => {
     const response = await axios.post(`${prefix}/sendSMS`, cerNum, {
@@ -54,3 +57,9 @@ export const findUserPw = async findUser => {
     const response = await axios.post(`${prefix}/findUserPw`,findUser)
     return response.data
 }
+
+/* ------------------------------------------------------------------------------ */
+
+// admin
+
+export const getUsers = async
