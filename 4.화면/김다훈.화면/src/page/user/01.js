@@ -10,6 +10,9 @@ import useTo from "../useTo";
 
 
 const UserLogin = () => {
+    let sessionStorage = window.sessionStorage;
+    sessionStorage.setItem("admin", "admin")
+
     const navigate = useNavigate(); //변수 할당시켜서 사용
     const onClickBtn = () => {
         navigate('/'); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
@@ -20,6 +23,25 @@ const UserLogin = () => {
         userName: '',
         userPw: '',
     })
+
+    const [admin, setAdmin] = useState({
+        userName: 'admin',
+        userPw: 'admin'
+    })
+
+    const onChangeAdmin = e => {
+        admin[e.target.name] = e.target.value
+        setAdmin({...admin})
+    }
+
+    const checkAdmin = useCallback(()=> {
+        if(admin.userName === "admin" && admin.userPw === "admin") {
+            alert("관리자 접속 성공")
+            navigate("/adminMain")
+        } else {
+            alert("관리자 접속 불가능")
+        }
+    }, [admin])
 
 
     const onChange = e => {
@@ -46,7 +68,6 @@ const UserLogin = () => {
             } else if(response.userName === userLogin.userName) {
                 // id, pw 모두 일치
                 alert("로그인에 성공하셨습니다.")
-                let sessionStorage = window.sessionStorage;
                 sessionStorage.setItem("user_Name", userLogin.userName);
                 sessionStorage.setItem("user_pw", userLogin.userPw);
                 toGet(response.userId)
@@ -54,10 +75,6 @@ const UserLogin = () => {
             // 작업 완료 되면 페이지 이동(새로고침)
             navigate(`/${response.userId}`);
         })
-            // .catch(error => {
-            //     alert("입력하신 로그인정보가 맞지않습니다.")
-            //     window.location.reload();
-            // });
     }, [userLogin])
 
 
@@ -109,14 +126,20 @@ const UserLogin = () => {
                     <Form.Group className="mb-3 mt-3"  controlId="formGroupEmail">
                         <Form.Label>ID</Form.Label>
                         <Form.Control name='userName' type="text" placeholder="아이디를 입력하세요." className='h-25'
-                                      onChange={onChange}
+                                      onChange={(event) => {
+                                          onChange(event);
+                                          onChangeAdmin(event);
+                                      }}
                                       defaultValue={userLogin.userName}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formGroupPassword">
                         <Form.Label>Password</Form.Label><p className='float-end'></p>
                         <Form.Control name='userPw' type="password" placeholder="비밀번호를 입력하세요." className='h-25'
-                                      onChange={onChange}/>
+                                      onChange={(event) => {
+                                          onChange(event);
+                                          onChangeAdmin(event);
+                                      }}/>
                     </Form.Group>
                     <Row>
                         <Col>
@@ -150,14 +173,8 @@ const UserLogin = () => {
                 <Button variant='warning' size='lg' className='loginBtn mt-5 border border-dark'
                         onClick={onClickUserLogin}>로그인</Button>{' '}
                 <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn' href='/userSignUp'>회원가입</Button>{' '}
-                <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn' href='/adminMain'
-                        onClick={ () => {
-                            // sessionStorage.setItem("loginId", loginId);
-                            // sessionStorage.setItem("loginPassword", loginPassword);
-                            //
-                            // setSavedLoginId(sessionStorage.getItem("loginId"));
-                            // setSavedLoginPassword(sessionStorage.getItem("loginPassword"));
-                        }}>관리자로그인</Button>{' '}
+                <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn'
+                        onClick={checkAdmin}>관리자로그인</Button>{' '}
             </Row>
         </Container>
     )

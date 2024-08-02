@@ -5,6 +5,7 @@ import com.my.restaurant.repository.userRepository.UserRepository;
 import com.my.restaurant.service.userService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.http.Path;
 
 import java.util.Map;
 import java.util.Random;
@@ -56,6 +57,11 @@ public class UserController {
 	@PatchMapping("/userUpdate")
 	public void userUpdate(@RequestBody UserUpdateDto userUpdateDto) {
 		userService.userUpdate(userUpdateDto);
+	}
+
+	@DeleteMapping("del/{userId}")
+	public void delUser(@PathVariable(name="userId") Long userId) {
+		userService.delUser(userId);
 	}
 
 	@PostMapping("/sendSMS")

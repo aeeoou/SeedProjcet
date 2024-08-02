@@ -58,4 +58,15 @@ public class AdvertisementController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // 광고 수정 (광고 업데이트 요청을 처리하는 엔드포인트를 추가)
+    @PutMapping("/update/{advertisementNo}")
+    public ResponseEntity<Void> updateAdvertisement(@PathVariable Long advertisementNo, @RequestBody AdvertisementDto advertisementDto) {
+        boolean updated = advertisementService.updateAdvertisement(advertisementNo, advertisementDto);
+        if (updated) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

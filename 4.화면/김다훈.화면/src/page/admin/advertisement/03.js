@@ -7,6 +7,8 @@ import DelAdBtn from './DelAdBtn';
 
 const AdminAdvertisementUpdate = () => {
     const [advertisement, setAdvertisement] = useState(null);
+    const [restaurantName, setRestaurantName] = useState('');
+    const [advertisementContent, setAdvertisementContent] = useState('');
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const advertisementId = parseInt(id, 10);
@@ -17,6 +19,8 @@ const AdminAdvertisementUpdate = () => {
             try {
                 const response = await axios.get(`http://localhost:8000/advertisement/details/${advertisementId}`);
                 setAdvertisement(response.data);
+                setRestaurantName(response.data.restaurantName);
+                setAdvertisementContent(response.data.advertisementContent);
             } catch (error) {
                 console.error('Error fetching advertisement details', error);
             } finally {
@@ -35,9 +39,16 @@ const AdminAdvertisementUpdate = () => {
         return <div>Advertisement not found</div>;
     }
 
-    const handleUpdate = () => {
-        // Update logic here
-        navigate('/adminAdvertisement');
+    const handleUpdate = async () => {
+        try {
+            await axios.put(`http://localhost:8000/advertisement/update/${advertisementId}`, {
+                restaurantName,
+                advertisementContent,
+            });
+            navigate('/adminAdvertisement');
+        } catch (error) {
+            console.error('Error updating advertisement', error);
+        }
     };
 
     const handleCancel = () => {

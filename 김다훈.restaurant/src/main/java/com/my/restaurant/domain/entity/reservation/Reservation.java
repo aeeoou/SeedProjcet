@@ -1,5 +1,6 @@
 package com.my.restaurant.domain.entity.reservation;
 
+import com.my.restaurant.domain.entity.restaurant.Restaurant;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +21,10 @@ public class Reservation {
     private Long reservationId;
     private String userId;
     private LocalDate reservationDate;
-    private String restaurantName;
+
+    @OneToOne
+    @JoinColumn(name = "restaurant_id") // FK 매핑
+    private Restaurant restaurant;
     private Long price;
     private LocalTime reservationTime;
     private Long peopleNum;

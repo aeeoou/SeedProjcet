@@ -1,5 +1,6 @@
 package com.my.restaurant.repository.userRepository;
 
+import com.my.restaurant.domain.dto.userDto.UserDto;
 import com.my.restaurant.domain.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -7,7 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -31,6 +34,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
                    @Param("userPw") String userPw, @Param("userEmail") String userEmail, @Param("userId") Long userId);
 
 
-    @Query("SELECT nvl(u.userName, 1) from User u where u.userName = :userName")
-    Boolean duplicatedUserName(@Param("userName") String userName);
+    @Query("SELECT u.userName from User u where u.userName = :userName")
+    Optional duplicatedUserName(@Param("userName") String userName);
+
+
 }

@@ -76,4 +76,19 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             return false;
         }
     }
+
+    // 광고 수정(업데이트) 로직
+    @Override
+    @Transactional
+    public boolean updateAdvertisement(Long advertisementNo, AdvertisementDto advertisementDto) {
+        Advertisement advertisement = advertisementRepository.findByAdvertisementNo(advertisementNo);
+        if (advertisement != null) {
+            advertisement.setRestaurantName(advertisementDto.getRestaurantName());
+            advertisement.setAdvertisementContent(advertisementDto.getAdvertisementContent());
+            advertisementRepository.save(advertisement);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
