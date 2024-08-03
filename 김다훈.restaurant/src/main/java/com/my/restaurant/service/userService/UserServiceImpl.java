@@ -135,8 +135,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void certifiedPhoneNumber(String u_phone, String cerNum) {
-		String api_key = "NCSIUJKBJ7K3APIY";
-		String api_secret = "TDB6BRFHKVJMWCZALOEUH6QJCEI9IVKO";
+		String api_key = "";
+		String api_secret = "";
 		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize(api_key, api_secret, "http://api.coolsms.co.kr");
 		Message message = new Message();
 		message.setFrom("01087817327"); // 발신번호
