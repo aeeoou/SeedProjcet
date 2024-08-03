@@ -1,6 +1,5 @@
 package com.my.restaurant.repository.userRepository;
 
-import com.my.restaurant.domain.dto.userDto.UserDto;
 import com.my.restaurant.domain.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -38,4 +37,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional duplicatedUserName(@Param("userName") String userName);
 
 
+
+    @Query(value = "SELECT * FROM ( " +
+            "  SELECT u.*, ROW_NUMBER() OVER (ORDER BY u.user_id DESC) AS rn " +
+            "  FROM users u " +
+            ") WHERE rn BETWEEN :startRow AND :endRow",
+            nativeQuery = true)
+    List<User> findUsersWithPagination(@Param("startRow") int startRow, @Param("endRow") int endRow);
+
+    @Query("SELECT COUNT(u) FROM User u")
+    long countUsers();
 }

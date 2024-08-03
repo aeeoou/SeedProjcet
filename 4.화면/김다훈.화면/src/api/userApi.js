@@ -62,4 +62,9 @@ export const findUserPw = async findUser => {
 
 // admin
 
-export const getUsers = async
+export const getUsers = async query => {
+    const response = await axios.get(`${prefix}/list`, {
+        params:query
+    })
+    return response.data
+}

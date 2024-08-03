@@ -39,10 +39,12 @@ dependencies {
 	implementation 'org.modelmapper:modelmapper:3.1.1'
 	implementation 'net.nurigo:sdk:4.3.0'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'log4j:log4j:1.2.17'
+	implementation 'org.slf4j:slf4j-log4j12:1.7.29'
 	// dto와 entity의 다리역할을 해주는 modelmapper dependency
 	// Gradle groovy와 kootlen의 차이는 dependencies의 문법차이이다.
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }

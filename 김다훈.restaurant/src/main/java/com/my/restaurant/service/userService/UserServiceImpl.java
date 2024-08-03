@@ -1,5 +1,7 @@
 package com.my.restaurant.service.userService;
 
+import com.my.restaurant.domain.dto.PageRequestDto;
+import com.my.restaurant.domain.dto.PageResponseDto;
 import com.my.restaurant.domain.dto.userDto.*;
 import com.my.restaurant.domain.entity.user.User;
 import com.my.restaurant.repository.userRepository.UserRepository;
@@ -9,10 +11,15 @@ import net.nurigo.sdk.message.exception.NurigoMessageNotReceivedException;
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -72,6 +79,50 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public PageResponseDto<UserDto> getUsers(PageRequestDto request) {
+		// Pageable 생성
+		Pageable pageable = PageRequest.of(
+				request.getPage() - 1, // PageRequest는 0부터 시작하므로 -1
+				request.getSize(),
+				Sort.by("userId").descending() // 정렬 필드와 방향 설정
+		);
+
+		// Start and End Row Calculation
+		int startRow = (request.getPage() - 1) * request.getSize() + 1;
+		int endRow = startRow + request.getSize() - 1;
+
+		List<UserDto> users;
+		long totUserCnt;
+
+		try {
+			// 사용자 데이터 페이징 조회
+			List<User> userList = userRepository.findUsersWithPagination(startRow, endRow);
+
+			// User 엔티티를 UserDto로 변환
+			users = userList.stream()
+					.map(user -> modelMapper.map(user, UserDto.class))
+					.collect(Collectors.toList());
+
+			// 총 사용자 수 조회
+			totUserCnt = userRepository.countUsers();
+
+		} catch (Exception e) {
+			// 예외 처리: 로깅, 사용자에게 적절한 오류 메시지 전달 등
+			e.printStackTrace(); // 콘솔에 예외 스택 트레이스를 출력합니다.
+			throw new RuntimeException("사용자 데이터를 조회하는 중 오류가 발생했습니다.", e);
+		}
+
+		// PageResponseDto 객체 생성
+		PageResponseDto<UserDto> response = PageResponseDto.<UserDto>builder()
+				.items(users)
+				.request(request)
+				.totItemCnt(totUserCnt)
+				.build();
+
+		return response;
+	}
+
+	@Override
 	public void userUpdate(UserUpdateDto userUpdateDto) {
 		userRepository.patchUser(userUpdateDto.getUserName(), userUpdateDto.getPersonalName(), userUpdateDto.getBirthDay(),
 				userUpdateDto.getPhoneNumber(), userUpdateDto.getUserPw(), userUpdateDto.getUserEmail(), userUpdateDto.getUserId());
@@ -84,8 +135,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void certifiedPhoneNumber(String u_phone, String cerNum) {
-		String api_key = "";
-		String api_secret = "";
+		String api_key = "NCSIUJKBJ7K3APIY";
+		String api_secret = "TDB6BRFHKVJMWCZALOEUH6QJCEI9IVKO";
 		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize(api_key, api_secret, "http://api.coolsms.co.kr");
 		Message message = new Message();
 		message.setFrom("01087817327"); // 발신번호

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* paging */
 #paging {
     color: black;
@@ -727,3 +731,4 @@ a {
 .search-container {
     margin-top: 0;
 }
+

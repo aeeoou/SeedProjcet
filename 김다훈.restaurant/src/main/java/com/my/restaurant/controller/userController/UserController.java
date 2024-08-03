@@ -1,11 +1,12 @@
 package com.my.restaurant.controller.userController;
 
+import com.my.restaurant.domain.dto.PageRequestDto;
+import com.my.restaurant.domain.dto.PageResponseDto;
 import com.my.restaurant.domain.dto.userDto.*;
 import com.my.restaurant.repository.userRepository.UserRepository;
 import com.my.restaurant.service.userService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.http.Path;
 
 import java.util.Map;
 import java.util.Random;
@@ -81,5 +82,11 @@ public class UserController {
 	@GetMapping("/checkUserName/{userName}")
 	public Boolean checkUserNameDuplicate(@PathVariable String userName) {
 			return userService.isUserNameAvailable(userName);
+	}
+
+	//---------------------------------------admin------------------------------------//
+	@GetMapping("/list")
+	public PageResponseDto<UserDto> getUsers(PageRequestDto request) {
+		return userService.getUsers(request);
 	}
 }

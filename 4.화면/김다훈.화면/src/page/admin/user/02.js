@@ -2,8 +2,19 @@ import AdminLayout from '../AdminLayout';
 import {Row, Col} from 'react-bootstrap';
 import DelMemBtn from '../../admin/user/DelMemBtn';
 import {CardText} from 'react-bootstrap-icons';
+import {useState} from "react";
 
 const AdminUserList = () => {
+
+    const [adminUser, setAdminUser] = useState({
+        userId: 0,
+        userName:'',
+        personalName:'',
+        phoneNumber:'',
+        birthDay:'',
+        userEmail:'',
+    })
+
     return (
         <AdminLayout>
             <Row >

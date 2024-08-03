@@ -29,8 +29,10 @@ const UserLogin = () => {
         userPw: 'admin'
     })
 
+    const [isAdmin, setIsAdmin] = useState(false)
     const onChangeAdmin = e => {
         admin[e.target.name] = e.target.value
+        setIsAdmin(true)
         setAdmin({...admin})
     }
 
@@ -38,6 +40,8 @@ const UserLogin = () => {
         if(admin.userName === "admin" && admin.userPw === "admin") {
             alert("관리자 접속 성공")
             navigate("/adminMain")
+        } else if(admin.userName === '' || admin.userPw === '') {
+            alert("관리자 접속 불가능")
         } else {
             alert("관리자 접속 불가능")
         }
@@ -174,7 +178,7 @@ const UserLogin = () => {
                         onClick={onClickUserLogin}>로그인</Button>{' '}
                 <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn' href='/userSignUp'>회원가입</Button>{' '}
                 <Button variant='warning' size='lg' className='loginUpBtn border border-dark btn'
-                        onClick={checkAdmin}>관리자로그인</Button>{' '}
+                        onClick={checkAdmin} disabled={!(isAdmin)}>관리자로그인</Button>{' '}
             </Row>
         </Container>
     )

@@ -1,8 +1,11 @@
 package com.my.restaurant.service.userService;
 
+import com.my.restaurant.domain.dto.PageRequestDto;
+import com.my.restaurant.domain.dto.PageResponseDto;
 import com.my.restaurant.domain.dto.userDto.*;
 
 public interface UserService {
+	PageResponseDto<UserDto> getUsers(PageRequestDto request);
 	void userUpdate(UserUpdateDto userUpdateDto);
 	UserDto getUser(Long userId);
 	UserLoginDto findBy(UserLoginDto params);
