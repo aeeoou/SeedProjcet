@@ -21,10 +21,14 @@ const SideBar = ({toggleWelcomeMessage}) => {
     let sessionStorage = window.sessionStorage;
 
     return (
-        <div id='sidebar-wrapper' className='border border-dark text-center'>
-            <Gear className='gearIcon mt-5' />
+        <div id='sidebar-wrapper' className='border border-dark text-center '>
+            <Row>
+                <Col className='d-flex align-items-center justify-content-center'>
+                    <Gear className='gearIcon mt-5 '/>
+                </Col>
+            </Row>
             <Row className='mt-4'>
-                <Col>
+                <Col className='d-flex align-items-center justify-content-center'>
                     <a className='link-dark' href='/adminMain'>
                         <House className='me-4 fs-5'/>
                     </a>
