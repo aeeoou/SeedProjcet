@@ -26,13 +26,13 @@ const useTo = () => {
         } else query = queryDefault
 
         navigate({
-            pathname: '../adminUser',
+            pathname: '/adminUser',
             search: query
         })
     }
 
     const toGet = num => navigate({
-        pathname: `../${num}`,
+        pathname: `/adminUserList/${num}`,
         search: queryDefault
     })
 

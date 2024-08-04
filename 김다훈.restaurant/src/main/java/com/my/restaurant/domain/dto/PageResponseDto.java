@@ -25,12 +25,12 @@ public class PageResponseDto<E> {
         this.items = items;
         this.request = request;
         this.totItemCnt = (int)totItemCnt;
-        int end = (int)(Math.ceil(request.getPage() / 10.0)) * 10; // page의 시작과 끝값 구하기, end = 10페이지
+        int end = (int)(Math.ceil(request.getPage() / 5.0)) * 5; // page의 시작과 끝값 구하기, end = 10페이지
         // request.getPage(): 현재페이지(1페이지라면), 1 / 10.0 = 0.1(double) Math.ceil(0.1) = 1 => 1 * 10 -> end = 10
         // request.getPage(): 2페이지라면, 2 / 10.0 = 0.2(double) Math.ceil(0.2) = 1 => 1 * 10 -> end = 10
         // request.getPage(): 11페이지라면, 11 / 10.0 => 1.1(double) Math.ceil(1.1) = 2 => 2 * 10 -> end = 20
         // Math.ceil은 소수점의값을 올려서 정수값으로 표현한다.
-        int start = end - 9; //start = 1페이지
+        int start = end - 4; //start = 1페이지
         int last = (int)(Math.ceil((totItemCnt / (double)request.getSize())));
         // 18개의 게시글이 있다면 18 / 5.0 = 3.6 => ceil 메서드로 인해 4페이지가 마지막페이지가 된다.
         // 마지막페이지를 의미하는 last

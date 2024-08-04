@@ -6,15 +6,42 @@ import {getUsers} from "../../../api/userApi";
 import useTo from "../../useTo";
 import Paging from "../../Paging";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 
 const AdminUser = () => {
     const [refresh, setRefresh] = useState(false)
     const {toGet, toList, page, size} = useTo()
     const [response, setResponse] = useState(null)
+    const [user, setUser] = useState([]);
+    const [searchType, setSearchType] = useState('선택');
+    const [searchQuery, setSearchQuery] = useState('');
+
     useEffect(() => {
         getUsers({page, size}).then(response => setResponse(response))
     }, [page, size, refresh])
+
+
+
+
+    // 검색 함수
+    const searchUser = async () => {
+        try {
+            const response = await axios.get('http://localhost:8000/user/search', {
+                params: {
+                    type: searchType,
+                    query: searchQuery
+                }
+            });
+            alert(response.data)
+            setResponse(response.data);
+
+        } catch (error) {
+            console.error('Error searching advertisements', error);
+        }
+    };
+
+    // 컴포넌트가 마운트될 때 광고 목록을 가져옴
 
     return (
         <AdminLayout>
@@ -35,8 +62,7 @@ const AdminUser = () => {
                             {response ? response.items.map(user =>
                                 <tr key={user.userId} onClick={() => {
                                     setRefresh(!refresh)
-                                    toGet(user.userId)
-                                }}>
+                                    toGet(user.userId)}}>
                                     <td scope="row" className='link-dark'>
                                         {user.userId}
                                     </td>
@@ -62,15 +88,15 @@ const AdminUser = () => {
 
                 {/* 검색바 */}
                 <div className="searchContainer">
-                    <Form.Select className="searchSelect">
+                    <Form.Select className="searchSelect" value={searchType} onChange={(e) => setSearchType(e.target.value)}>
                         <option>제목</option>
                         <option>식별번호</option>
                         <option>이름</option>
                         <option>ID</option>
                     </Form.Select>
                     <InputGroup>
-                        <Form.Control type="text" placeholder="검색어를 입력하세요"/>
-                        <Button variant="outlineSecondary">
+                        <Form.Control type="text" placeholder="검색어를 입력하세요" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                        <Button variant="outlineSecondary" onClick={searchUser}>
                             <FaSearch/>
                         </Button>
                     </InputGroup>

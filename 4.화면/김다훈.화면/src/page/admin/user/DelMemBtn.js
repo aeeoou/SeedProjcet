@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-function DeleteMemBtn () {
+function DeleteMemBtn ({del}) {
     const [show, setShow] = useState(false)
 
     const onClose = () => setShow(false)
@@ -23,11 +23,9 @@ function DeleteMemBtn () {
                         <Button variant='warning' className='deleteNoBtn me-2' onClick={onClose}>
                             아니오
                         </Button>
-                        <a href='/adminUserDeleteComplete'>
-                            <Button variant='warning' className='deleteYesBtn'>
-                                예
-                            </Button>
-                        </a>
+                        <Button variant='warning' className='deleteYesBtn' onClick={del}>
+                            예
+                        </Button>
                     </div>
                 </Modal.Body>      
             </Modal>

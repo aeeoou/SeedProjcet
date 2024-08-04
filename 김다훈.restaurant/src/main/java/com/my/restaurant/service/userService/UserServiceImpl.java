@@ -165,4 +165,25 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	// 유저 검색
+	@Override
+	public List<UserDto> searchUser(String type, String query) {
+		List<User> users;
+		if (type.equals("식별번호")) {
+			Long userId = Long.parseLong(query);
+			User user = userRepository.findByUserId(userId);
+			users = user != null ? List.of(user) : List.of();
+		} else if (type.equals("이름")) {
+			users = userRepository.findByPersonalNameContaining(query);
+		} else if (type.equals("ID")) {
+			users = userRepository.findByUserNameContaining(query);
+		} else {
+			// 날짜 형식이 잘못된 경우 빈 리스트 반환
+			users = List.of();
+		}
+		return users.stream()
+				.map(user -> modelMapper.map(user, UserDto.class))
+				.collect(Collectors.toList());
+	}
+
 }

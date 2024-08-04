@@ -2,10 +2,15 @@ import AdminLayout from '../AdminLayout';
 import {Row, Col} from 'react-bootstrap';
 import DelMemBtn from '../../admin/user/DelMemBtn';
 import {CardText} from 'react-bootstrap-icons';
-import {useState} from "react";
+import {useState, useEffect, useCallback} from "react";
+import {useParams} from "react-router-dom";
+import {getUser, userDelete} from "../../../api/userApi";
+import useTo from "../../useTo";
+import Button from "react-bootstrap/Button";
 
 const AdminUserList = () => {
-
+    const {userId} = useParams()
+    const {toList, page} = useTo()
     const [adminUser, setAdminUser] = useState({
         userId: 0,
         userName:'',
@@ -14,6 +19,15 @@ const AdminUserList = () => {
         birthDay:'',
         userEmail:'',
     })
+
+    useEffect(() => {
+        getUser(userId).then(adminUser => setAdminUser(adminUser))
+    }, [userId])
+
+    const deleteUser = useCallback(() => {
+        userDelete(userId).then()
+        toList()
+    }, [userId])
 
     return (
         <AdminLayout>
@@ -30,29 +44,30 @@ const AdminUserList = () => {
                     <tbody>
                         <tr>
                             <th className='border' scope="col">식별번호</th>
-                            <td>1</td>
+                            <td>{adminUser.userId}</td>
                         </tr>
                         <tr>
                             <th className='border' scope="col">이름</th>
-                            <td>김다훈</td>
+                            <td>{adminUser.personalName}</td>
                         </tr>
                         <tr>
                             <th className='border' scope="col">전화번호</th>
-                            <td>010-1111-1111</td>
+                            <td>{adminUser.phoneNumber}</td>
                         </tr>
                         <tr>
                             <th className='border' scope="col">ID</th>
-                            <td>dh1111</td>
+                            <td>{adminUser.userName}</td>
                         </tr>
                         <tr>
-                            <th className='border' scope="col">가입일</th>
-                            <td>2024-01-01</td>
+                            <th className='border' scope="col">생년월일</th>
+                            <td>{adminUser.birthDay}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className='d-flex justify-content-end'>
-                <DelMemBtn/>
+                <DelMemBtn del={deleteUser}/>
+                <Button variant='warning' className='delMemBtn me-2' href={'/adminUser'}>목록</Button>
             </div>
         </AdminLayout>
     )

@@ -6,8 +6,10 @@ import com.my.restaurant.domain.dto.userDto.*;
 import com.my.restaurant.repository.userRepository.UserRepository;
 import com.my.restaurant.service.userService.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -88,5 +90,12 @@ public class UserController {
 	@GetMapping("/list")
 	public PageResponseDto<UserDto> getUsers(PageRequestDto request) {
 		return userService.getUsers(request);
+	}
+
+	// 광고 검색 API 백엔드에 추가
+	@GetMapping("/search")
+	public ResponseEntity<List<UserDto>> searchUser(@RequestParam String type, @RequestParam String query) {
+		List<UserDto> user = userService.searchUser(type, query);
+		return ResponseEntity.ok(user);
 	}
 }

@@ -47,4 +47,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT COUNT(u) FROM User u")
     long countUsers();
+
+    @Query
+    User findByUserId(Long userId);
+    List<User> findByPersonalNameContaining(String personalName);
+    List<User> findByUserNameContaining(String userName);
 }

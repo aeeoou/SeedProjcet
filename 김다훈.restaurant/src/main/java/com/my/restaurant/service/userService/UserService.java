@@ -4,6 +4,8 @@ import com.my.restaurant.domain.dto.PageRequestDto;
 import com.my.restaurant.domain.dto.PageResponseDto;
 import com.my.restaurant.domain.dto.userDto.*;
 
+import java.util.List;
+
 public interface UserService {
 	PageResponseDto<UserDto> getUsers(PageRequestDto request);
 	void userUpdate(UserUpdateDto userUpdateDto);
@@ -16,4 +18,5 @@ public interface UserService {
 	void delUser(Long userId);
 	void certifiedPhoneNumber(String u_phone, String cerNum);
 	Boolean isUserNameAvailable(String userName);
+	List<UserDto> searchUser(String type, String query);
 }

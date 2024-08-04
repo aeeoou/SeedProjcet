@@ -173,7 +173,7 @@ const rootRouter = createBrowserRouter([
         element: <Suspense><AdminUser/></Suspense>
     },
     {
-        path: '/adminUserList',
+        path: '/adminUserList/:userId',
         element: <Suspense><AdminUserList/></Suspense>
     },
     {
