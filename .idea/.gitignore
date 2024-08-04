@@ -8,4 +8,5 @@
 /dataSources.local.xml
 ### Java ###
 # Compiled class file
-Api.class
+# Ignore a specific Java class file
+김다훈.restaurant/src/main/java/com/my/restaurant/service/userService/Api.java
