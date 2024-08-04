@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="518e88cf-669b-4c6f-9721-83a85f768695" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/modules/김다훈.restaurant.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/api/userApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/page/user/01.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/page/user/01.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/page/user/02.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/page/user/02.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/page/user/UserCheckModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../4.화면/김다훈.화면/src/page/user/UserCheckModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/8.8/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/dto/UserDto$UserDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/dto/UserDto$UserDtoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/domain/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/classes/java/main/com/my/restaurant/service/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/compileTransaction/stash-dir/User$UserBuilder.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/compileTransaction/stash-dir/User.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/compileTransaction/stash-dir/UserController.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/compileTransaction/stash-dir/UserRepository.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/compileTransaction/stash-dir/UserService.class.uniqueId5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/compileTransaction/stash-dir/UserServiceImpl.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/controller/DateFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/controller/DateFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/domain/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/domain/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/domain/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/domain/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../김다훈.restaurant/src/main/java/com/my/restaurant/service/UserServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Fastkim"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Fastkim/SeedProjcet.git",
+    "accountId": "54deb2ea-ec96-4c04-adcb-ed188f5a664b"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2jm59l8S4L6V1tK1Oy5QI7CsS7e" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "UserSignUp",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/DEV/Seedproject/coolsms_모바일인증/gradle-spring-demo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="GradleSpringDemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gradle-spring-demo.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="net.nurigo.gradlespringdemo.GradleSpringDemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="518e88cf-669b-4c6f-9721-83a85f768695" name="Changes" comment="" />
+      <created>1721979262907</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1721979262907</updated>
+      <workItem from="1721979263919" duration="481000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
